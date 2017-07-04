@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 17070301
-        versionName "1.0.0"
+        versionCode 17070401
+        versionName "1.0.1"
     }
     buildTypes {
         release {
@@ -32,7 +32,7 @@ publish {
     userOrg = 'zj565061763'
     groupId = 'com.fanwe.android'
     artifactId = 'looper'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'android looper library'
     website = 'https://github.com/zj565061763/AndroidLooper'
 }
