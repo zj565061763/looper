@@ -9,4 +9,8 @@
 * 直播间循环遍历礼物view的播放状态，从礼物队列中取数据展示
 * ...
 
+# SDSimpleLooper
+
+该Looper是库中已经实现ISDLooper的实现类基于Handler实现，较Timer性能消耗更少
+![](http://thumbsnap.com/i/ZgUfB62K.png?0703)
 
