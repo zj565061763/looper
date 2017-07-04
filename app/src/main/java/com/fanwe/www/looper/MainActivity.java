@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.fanwe.library.looper.ISDLooper;
-import com.fanwe.library.looper.iml.SDSimpleLooper;
-import com.fanwe.library.looper.iml.SDWaitRunner;
+import com.fanwe.library.looper.impl.SDSimpleLooper;
+import com.fanwe.library.looper.impl.SDWaitRunner;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
                 })
                 .startWait(100); //开始等待，每100毫秒检测一次Runnable执行条件是否成立
 
-//        waitRunner.stopWait(); //停止等待，ui销毁的地方要记得停止，否则会内存泄漏
+//        waitRunner.stopWait(); //停止等待，在需要停止的地方停止，比如ui销毁
     }
 
     private void testSDSimpleLooper()
@@ -73,6 +73,6 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getApplication(), "toast", 0).show();
             }
         });
-//        looper.stop(); //停止循环，ui销毁的地方要停止，否则会内存泄漏
+//        looper.stop(); //停止循环，在需要停止的地方停止，比如ui销毁
     }
 }
