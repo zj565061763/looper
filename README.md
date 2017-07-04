@@ -11,6 +11,6 @@
 
 # SDSimpleLooper
 
-该Looper是库中已经实现ISDLooper的实现类基于Handler实现，较Timer性能消耗更少
+该类是库中已经实现ISDLooper接口的实现类，内部基于Handler实现，较Timer性能消耗更少，构造方法支持传入Looper对象来指定要循环的线程，默认在主线程循环
 ![](http://thumbsnap.com/i/ZgUfB62K.png?0703)
 
