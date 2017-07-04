@@ -11,6 +11,8 @@ import com.fanwe.library.looper.iml.SDWaitRunner;
 public class MainActivity extends AppCompatActivity
 {
 
+    public static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
