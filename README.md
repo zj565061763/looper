@@ -14,7 +14,22 @@
 * ...
 
 该类是库中已经实现ISDLooper接口的实现类，内部基于Handler实现，较Timer性能消耗更少，构造方法支持传入Looper对象来指定要循环的线程，默认在主线程循环<br>
-![](http://thumbsnap.com/i/wiQJovLs.png?0703)
+```java
+private void testSDSimpleLooper()
+{
+    //延迟500毫秒后，每秒触发一次设置的Runnable对象
+    ISDLooper looper = new SDSimpleLooper();
+    looper.start(500, 1000, new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            Toast.makeText(getApplication(), "toast", 0).show();
+        }
+    });
+    // looper.stop(); //停止循环，在需要停止的地方停止，比如ui销毁
+}
+```
 
 ## SDWaitRunner
 ![](http://thumbsnap.com/s/uNymDfuo.png?0703)
