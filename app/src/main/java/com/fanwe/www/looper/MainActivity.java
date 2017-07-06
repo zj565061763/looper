@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.fanwe.library.looper.ISDLooper;
 import com.fanwe.library.looper.impl.SDSimpleLooper;
+import com.fanwe.library.looper.impl.SDSimpleTimeoutLooper;
 import com.fanwe.library.looper.impl.SDWaitRunner;
 
 public class MainActivity extends AppCompatActivity
@@ -19,7 +20,31 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testSDWaitRunner();
+//        testSDWaitRunner();
+        testSDSimpleTimeoutLooper();
+    }
+
+    private void testSDSimpleTimeoutLooper()
+    {
+        SDSimpleTimeoutLooper looper = new SDSimpleTimeoutLooper();
+        looper.setTimeout(5 * 1000) //设置超时时间
+                .setTimeoutRunnable(new Runnable() //设置超时后需要执行的Runnable
+                {
+                    @Override
+                    public void run()
+                    {
+                        Toast.makeText(getApplication(), "timeout", 0).show();
+                    }
+                })
+                //延迟500毫秒，每隔1000毫秒触发一次Runnable，触发的同时会进行是否超时的判断，如果超时，执行超时Runnable
+                .start(500, 1000, new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        Toast.makeText(getApplication(), "run", 0).show();
+                    }
+                });
     }
 
     int count = 0;
@@ -58,7 +83,7 @@ public class MainActivity extends AppCompatActivity
                 })
                 .startWait(100); //开始等待，每100毫秒检测一次Runnable执行条件是否成立
 
-//        waitRunner.stopWait(); //停止等待，在需要停止的地方停止，比如ui销毁
+        // waitRunner.stopWait(); //停止等待，在需要停止的地方停止，比如ui销毁
     }
 
     private void testSDSimpleLooper()
@@ -73,6 +98,6 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getApplication(), "toast", 0).show();
             }
         });
-//        looper.stop(); //停止循环，在需要停止的地方停止，比如ui销毁
+        // looper.stop(); //停止循环，在需要停止的地方停止，比如ui销毁
     }
 }
