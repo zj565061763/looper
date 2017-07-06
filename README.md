@@ -54,6 +54,7 @@ private void testSDSimpleTimeoutLooper()
                     Toast.makeText(getApplication(), "run", 0).show();
                 }
             });
+    // looper.stop(); //停止循环，在需要停止的地方停止，比如ui销毁
 }
 ```
 
