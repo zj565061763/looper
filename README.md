@@ -97,5 +97,112 @@ private void testSDWaitRunner()
     // waitRunner.stopWait(); //停止等待，在需要停止的地方停止，比如ui销毁
 }
 ```
+## ISDLooper
+```java
+public interface ISDLooper
+{
 
+    /**
+     * 默认循环触发间隔
+     */
+    public static final long DEFAULT_PERIOD = 300;
+
+    /**
+     * 是否正在循环中
+     *
+     * @return
+     */
+    boolean isRunning();
+
+    /**
+     * 设置循环触发间隔
+     *
+     * @param period
+     */
+    void setPeriod(long period);
+
+    /**
+     * 开始循环
+     *
+     * @param runnable 循环触发对象
+     * @return
+     */
+    ISDLooper start(Runnable runnable);
+
+    /**
+     * 开始循环
+     *
+     * @param period   循环触发间隔
+     * @param runnable 循环触发对象
+     * @return
+     */
+    ISDLooper start(long period, Runnable runnable);
+
+    /**
+     * 开始循环
+     *
+     * @param delay    延迟多久开始循环
+     * @param period   循环触发间隔
+     * @param runnable 循环触发对象
+     * @return
+     */
+    ISDLooper start(long delay, long period, Runnable runnable);
+
+    /**
+     * 停止循环
+     *
+     * @return
+     */
+    ISDLooper stop();
+
+}
+```
+## ISDTimeouter
+```java
+public interface ISDTimeouter
+{
+    /**
+     * 默认超时
+     */
+    long DEFAULT_TIMEOUT = 10 * 1000;
+
+    /**
+     * 获得设置的超时时间
+     */
+    long getTimeout();
+
+    /**
+     * 是否超时
+     */
+    boolean isTimeout();
+
+    /**
+     * 设置超时需要执行的Runnable
+     */
+    ISDTimeouter setTimeoutRunnable(Runnable timeoutRunnable);
+
+    /**
+     * 执行超时需要执行的Runnable
+     */
+    ISDTimeouter runTimeoutRunnable();
+
+    /**
+     * 设置超时时间
+     *
+     * @param timeout 大于0超时才有效
+     * @return
+     */
+    ISDTimeouter setTimeout(long timeout);
+
+    /**
+     * 开始超时计时
+     */
+    ISDTimeouter startTimeout();
+
+    /**
+     * 停止超时计时
+     */
+    ISDTimeouter stopTimeout();
+}
+```
 
