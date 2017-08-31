@@ -1,5 +1,3 @@
-# AndroidLooper
-实现循环触发任务的库
 
 ## Gradle
 `compile 'com.fanwe.android:looper:1.0.3'`
