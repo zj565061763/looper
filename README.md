@@ -2,7 +2,7 @@
 实现循环触发任务的库
 
 ## Gradle
-`compile 'com.fanwe.android:looper:1.0.2'`
+`compile 'com.fanwe.android:looper:1.0.3'`
 
 ## SDSimpleLooper
 应用场景：<br>
