@@ -33,7 +33,7 @@ publish {
     artifactId = 'looper'
     publishVersion = '1.0.3'
     desc = 'android looper library'
-    website = 'https://github.com/zj565061763/AndroidLooper'
+    website = 'https://github.com/zj565061763/looper'
 }
 
 tasks.withType(Javadoc) {
