@@ -1,6 +1,18 @@
 
 ## Gradle
-`compile 'com.fanwe.android:looper:1.0.3'`
+```
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+        compile 'com.github.zj565061763:looper:1.0.4'
+}
+
+```
 
 ## SDSimpleLooper
 应用场景：<br>
