@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fanwe.library.looper;
+package com.fanwe.lib.looper;
 
 import android.os.CountDownTimer;
 

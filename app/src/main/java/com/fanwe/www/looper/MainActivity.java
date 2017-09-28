@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.fanwe.library.looper.ISDLooper;
-import com.fanwe.library.looper.impl.SDSimpleLooper;
-import com.fanwe.library.looper.impl.SDSimpleTimeoutLooper;
-import com.fanwe.library.looper.impl.SDWaitRunner;
+import com.fanwe.lib.looper.ISDLooper;
+import com.fanwe.lib.looper.impl.SDSimpleLooper;
+import com.fanwe.lib.looper.impl.SDSimpleTimeoutLooper;
+import com.fanwe.lib.looper.impl.SDWaitRunner;
 
 public class MainActivity extends AppCompatActivity
 {

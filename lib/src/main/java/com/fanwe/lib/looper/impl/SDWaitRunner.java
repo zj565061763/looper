@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fanwe.library.looper.impl;
+package com.fanwe.lib.looper.impl;
 
-import com.fanwe.library.looper.ISDTimeouter;
+import com.fanwe.lib.looper.ISDTimeouter;
 
 /**
  * 等待执行类，等待Condition对象返回true的时候，执行设置的Runnable对象。可以设置等待超时，默认等待10秒，超时后执行超时Runnable

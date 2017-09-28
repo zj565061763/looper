@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fanwe.library.looper.impl;
+package com.fanwe.lib.looper.impl;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.fanwe.library.looper.ISDLooper;
+import com.fanwe.lib.looper.ISDLooper;
 
 public class SDSimpleLooper implements ISDLooper
 {
