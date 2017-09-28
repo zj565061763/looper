@@ -9,7 +9,7 @@ allprojects {
 }
 
 dependencies {
-        compile 'com.github.zj565061763:looper:1.0.4'
+        compile 'com.github.zj565061763:looper:1.0.5'
 }
 
 ```
