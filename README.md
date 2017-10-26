@@ -99,18 +99,17 @@ private void testSDWaitRunner()
 ```java
 public interface ISDLooper
 {
-
     /**
      * 默认循环触发间隔
      */
-    public static final long DEFAULT_PERIOD = 300;
+    long DEFAULT_PERIOD = 300;
 
     /**
-     * 是否正在循环中
+     * 是否已经开始循环
      *
      * @return
      */
-    boolean isRunning();
+    boolean isStarted();
 
     /**
      * 设置循环触发间隔
