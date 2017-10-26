@@ -85,6 +85,16 @@ public class SDCountDownTimer
         }
     }
 
+    /**
+     * 倒计时是否已经启动
+     *
+     * @return
+     */
+    public synchronized boolean isStarted()
+    {
+        return mTimer != null;
+    }
+
     public interface Callback
     {
         void onTick(long leftTime);
