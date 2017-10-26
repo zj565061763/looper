@@ -25,9 +25,9 @@ public class SDSimpleTimeoutLooper implements ISDLooper, ISDTimeouter
     private Runnable mRunnable;
 
     @Override
-    public boolean isRunning()
+    public boolean isStarted()
     {
-        return mLooper.isRunning();
+        return mLooper.isStarted();
     }
 
     @Override

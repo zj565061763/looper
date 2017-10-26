@@ -27,7 +27,7 @@ public class SDSimpleLooper implements ISDLooper
 
     private Runnable mRunnable;
     private long mPeriod;
-    private boolean mIsRunning = false;
+    private boolean mIsStarted = false;
     private boolean mIsCancelled = false;
     private Handler mHandler;
 
@@ -63,9 +63,9 @@ public class SDSimpleLooper implements ISDLooper
     }
 
     @Override
-    public synchronized boolean isRunning()
+    public synchronized boolean isStarted()
     {
-        return mIsRunning;
+        return mIsStarted;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class SDSimpleLooper implements ISDLooper
     {
         stop();
 
-        this.mIsRunning = true;
+        this.mIsStarted = true;
         this.mIsCancelled = false;
         this.mRunnable = runnable;
 
@@ -117,7 +117,7 @@ public class SDSimpleLooper implements ISDLooper
     public synchronized ISDLooper stop()
     {
         mHandler.removeMessages(MSG_WHAT);
-        mIsRunning = false;
+        mIsStarted = false;
         mIsCancelled = true;
         return this;
     }
