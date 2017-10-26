@@ -1,18 +1,6 @@
 
 ## Gradle
-```
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-
-dependencies {
-        compile 'com.github.zj565061763:looper:1.0.5'
-}
-
-```
+[![](https://jitpack.io/v/zj565061763/looper.svg)](https://jitpack.io/#zj565061763/looper)
 
 ## SDSimpleLooper
 应用场景：<br>
