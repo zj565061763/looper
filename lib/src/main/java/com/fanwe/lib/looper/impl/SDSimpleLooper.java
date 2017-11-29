@@ -26,7 +26,7 @@ public class SDSimpleLooper implements ISDLooper
     private static final int MSG_WHAT = 1990;
 
     private Runnable mRunnable;
-    private long mPeriod;
+    private long mPeriod = DEFAULT_PERIOD;
     private boolean mIsStarted = false;
     private boolean mIsCancelled = false;
     private Handler mHandler;
@@ -81,7 +81,7 @@ public class SDSimpleLooper implements ISDLooper
     @Override
     public ISDLooper start(Runnable runnable)
     {
-        start(0, DEFAULT_PERIOD, runnable);
+        start(0, mPeriod, runnable);
         return this;
     }
 
