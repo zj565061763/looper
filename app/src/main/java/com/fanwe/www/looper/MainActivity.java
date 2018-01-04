@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        testSDWaitRunner();
-        testSDSimpleTimeoutLooper();
+//        testWaitRunner();
+        testSimpleTimeoutLooper();
     }
 
-    private void testSDSimpleTimeoutLooper()
+    private void testSimpleTimeoutLooper()
     {
         FSimpleTimeoutLooper looper = new FSimpleTimeoutLooper();
         looper.setTimeout(5 * 1000) //设置超时时间
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * 等待某个条件成立后需要执行的Runnable
      */
-    private void testSDWaitRunner()
+    private void testWaitRunner()
     {
         FWaitRunner waitRunner = new FWaitRunner()
                 .run(new Runnable() //设置需要等待执行的Runnable
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         // waitRunner.stopWait(); //停止等待，在需要停止的地方停止，比如ui销毁
     }
 
-    private void testSDSimpleLooper()
+    private void testSimpleLooper()
     {
         //延迟500毫秒后，每秒触发一次设置的Runnable对象
         FLooper looper = new FSimpleLooper();
