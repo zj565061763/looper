@@ -19,9 +19,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.fanwe.lib.looper.ISDLooper;
+import com.fanwe.lib.looper.FLooper;
 
-public class SDSimpleLooper implements ISDLooper
+public class FSimpleLooper implements FLooper
 {
     private static final int MSG_WHAT = 1990;
 
@@ -31,18 +31,18 @@ public class SDSimpleLooper implements ISDLooper
     private boolean mIsCancelled = false;
     private Handler mHandler;
 
-    public SDSimpleLooper()
+    public FSimpleLooper()
     {
         this(Looper.getMainLooper());
     }
 
-    public SDSimpleLooper(Looper looper)
+    public FSimpleLooper(Looper looper)
     {
         mHandler = new Handler(looper)
         {
             public void handleMessage(Message msg)
             {
-                synchronized (SDSimpleLooper.this)
+                synchronized (FSimpleLooper.this)
                 {
                     if (mIsCancelled)
                     {
@@ -52,7 +52,7 @@ public class SDSimpleLooper implements ISDLooper
                     if (mRunnable != null)
                     {
                         mRunnable.run();
-                        SDSimpleLooper.this.sendMessageDelayed(mPeriod);
+                        FSimpleLooper.this.sendMessageDelayed(mPeriod);
                     } else
                     {
                         stop();
@@ -79,21 +79,21 @@ public class SDSimpleLooper implements ISDLooper
     }
 
     @Override
-    public ISDLooper start(Runnable runnable)
+    public FLooper start(Runnable runnable)
     {
         start(0, mPeriod, runnable);
         return this;
     }
 
     @Override
-    public ISDLooper start(long period, Runnable runnable)
+    public FLooper start(long period, Runnable runnable)
     {
         start(0, period, runnable);
         return this;
     }
 
     @Override
-    public synchronized ISDLooper start(long delay, long period, Runnable runnable)
+    public synchronized FLooper start(long delay, long period, Runnable runnable)
     {
         stop();
 
@@ -114,7 +114,7 @@ public class SDSimpleLooper implements ISDLooper
     }
 
     @Override
-    public synchronized ISDLooper stop()
+    public synchronized FLooper stop()
     {
         mHandler.removeMessages(MSG_WHAT);
         mIsStarted = false;

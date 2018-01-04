@@ -15,13 +15,13 @@
  */
 package com.fanwe.lib.looper.impl;
 
-import com.fanwe.lib.looper.ISDLooper;
-import com.fanwe.lib.looper.ISDTimeouter;
+import com.fanwe.lib.looper.FLooper;
+import com.fanwe.lib.looper.FTimeouter;
 
-public class SDSimpleTimeoutLooper implements ISDLooper, ISDTimeouter
+public class FSimpleTimeoutLooper implements FLooper, FTimeouter
 {
-    private ISDLooper mLooper = new SDSimpleLooper();
-    private ISDTimeouter mTimeouter = new SDSimpleTimeouter();
+    private FLooper mLooper = new FSimpleLooper();
+    private FTimeouter mTimeouter = new FSimpleTimeouter();
     private Runnable mRunnable;
 
     @Override
@@ -37,21 +37,21 @@ public class SDSimpleTimeoutLooper implements ISDLooper, ISDTimeouter
     }
 
     @Override
-    public SDSimpleTimeoutLooper start(Runnable runnable)
+    public FSimpleTimeoutLooper start(Runnable runnable)
     {
         start(0, DEFAULT_PERIOD, runnable);
         return this;
     }
 
     @Override
-    public SDSimpleTimeoutLooper start(long period, Runnable runnable)
+    public FSimpleTimeoutLooper start(long period, Runnable runnable)
     {
         start(0, DEFAULT_PERIOD, runnable);
         return this;
     }
 
     @Override
-    public SDSimpleTimeoutLooper start(long delay, long period, Runnable runnable)
+    public FSimpleTimeoutLooper start(long delay, long period, Runnable runnable)
     {
         this.mRunnable = runnable;
         mLooper.start(delay, period, mRealRunnable);
@@ -83,7 +83,7 @@ public class SDSimpleTimeoutLooper implements ISDLooper, ISDTimeouter
     };
 
     @Override
-    public SDSimpleTimeoutLooper stop()
+    public FSimpleTimeoutLooper stop()
     {
         mLooper.stop();
         return this;
@@ -102,35 +102,35 @@ public class SDSimpleTimeoutLooper implements ISDLooper, ISDTimeouter
     }
 
     @Override
-    public SDSimpleTimeoutLooper setTimeoutRunnable(Runnable timeoutRunnable)
+    public FSimpleTimeoutLooper setTimeoutRunnable(Runnable timeoutRunnable)
     {
         mTimeouter.setTimeoutRunnable(timeoutRunnable);
         return this;
     }
 
     @Override
-    public SDSimpleTimeoutLooper runTimeoutRunnable()
+    public FSimpleTimeoutLooper runTimeoutRunnable()
     {
         mTimeouter.runTimeoutRunnable();
         return this;
     }
 
     @Override
-    public SDSimpleTimeoutLooper setTimeout(long timeout)
+    public FSimpleTimeoutLooper setTimeout(long timeout)
     {
         mTimeouter.setTimeout(timeout);
         return this;
     }
 
     @Override
-    public SDSimpleTimeoutLooper startTimeout()
+    public FSimpleTimeoutLooper startTimeout()
     {
         mTimeouter.startTimeout();
         return this;
     }
 
     @Override
-    public SDSimpleTimeoutLooper stopTimeout()
+    public FSimpleTimeoutLooper stopTimeout()
     {
         mTimeouter.stopTimeout();
         return this;

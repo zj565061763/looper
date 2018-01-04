@@ -18,7 +18,7 @@ package com.fanwe.lib.looper;
 /**
  * 循环触发接口
  */
-public interface ISDLooper
+public interface FLooper
 {
     /**
      * 默认循环触发间隔
@@ -45,7 +45,7 @@ public interface ISDLooper
      * @param runnable 循环触发对象
      * @return
      */
-    ISDLooper start(Runnable runnable);
+    FLooper start(Runnable runnable);
 
     /**
      * 开始循环
@@ -54,7 +54,7 @@ public interface ISDLooper
      * @param runnable 循环触发对象
      * @return
      */
-    ISDLooper start(long period, Runnable runnable);
+    FLooper start(long period, Runnable runnable);
 
     /**
      * 开始循环
@@ -64,13 +64,13 @@ public interface ISDLooper
      * @param runnable 循环触发对象
      * @return
      */
-    ISDLooper start(long delay, long period, Runnable runnable);
+    FLooper start(long delay, long period, Runnable runnable);
 
     /**
      * 停止循环
      *
      * @return
      */
-    ISDLooper stop();
+    FLooper stop();
 
 }

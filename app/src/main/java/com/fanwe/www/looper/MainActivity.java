@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.fanwe.lib.looper.ISDLooper;
-import com.fanwe.lib.looper.impl.SDSimpleLooper;
-import com.fanwe.lib.looper.impl.SDSimpleTimeoutLooper;
-import com.fanwe.lib.looper.impl.SDWaitRunner;
+import com.fanwe.lib.looper.FLooper;
+import com.fanwe.lib.looper.impl.FSimpleLooper;
+import com.fanwe.lib.looper.impl.FSimpleTimeoutLooper;
+import com.fanwe.lib.looper.impl.FWaitRunner;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     private void testSDSimpleTimeoutLooper()
     {
-        SDSimpleTimeoutLooper looper = new SDSimpleTimeoutLooper();
+        FSimpleTimeoutLooper looper = new FSimpleTimeoutLooper();
         looper.setTimeout(5 * 1000) //设置超时时间
                 .setTimeoutRunnable(new Runnable() //设置超时后需要执行的Runnable
                 {
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
      */
     private void testSDWaitRunner()
     {
-        SDWaitRunner waitRunner = new SDWaitRunner()
+        FWaitRunner waitRunner = new FWaitRunner()
                 .run(new Runnable() //设置需要等待执行的Runnable
                 {
                     @Override
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplication(), "run", 0).show();
                     }
                 })
-                .condition(new SDWaitRunner.Condition() //设置Runnable执行条件
+                .condition(new FWaitRunner.Condition() //设置Runnable执行条件
                 {
                     @Override
                     public boolean canRun()
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
     private void testSDSimpleLooper()
     {
         //延迟500毫秒后，每秒触发一次设置的Runnable对象
-        ISDLooper looper = new SDSimpleLooper();
+        FLooper looper = new FSimpleLooper();
         looper.start(500, 1000, new Runnable()
         {
             @Override

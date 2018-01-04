@@ -15,7 +15,7 @@
  */
 package com.fanwe.lib.looper;
 
-public interface ISDTimeouter
+public interface FTimeouter
 {
     /**
      * 默认超时
@@ -35,12 +35,12 @@ public interface ISDTimeouter
     /**
      * 设置超时需要执行的Runnable
      */
-    ISDTimeouter setTimeoutRunnable(Runnable timeoutRunnable);
+    FTimeouter setTimeoutRunnable(Runnable timeoutRunnable);
 
     /**
      * 执行超时需要执行的Runnable
      */
-    ISDTimeouter runTimeoutRunnable();
+    FTimeouter runTimeoutRunnable();
 
     /**
      * 设置超时时间
@@ -48,15 +48,15 @@ public interface ISDTimeouter
      * @param timeout 大于0超时才有效
      * @return
      */
-    ISDTimeouter setTimeout(long timeout);
+    FTimeouter setTimeout(long timeout);
 
     /**
      * 开始超时计时
      */
-    ISDTimeouter startTimeout();
+    FTimeouter startTimeout();
 
     /**
      * 停止超时计时
      */
-    ISDTimeouter stopTimeout();
+    FTimeouter stopTimeout();
 }

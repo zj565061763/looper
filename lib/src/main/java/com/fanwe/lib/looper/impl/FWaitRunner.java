@@ -15,23 +15,23 @@
  */
 package com.fanwe.lib.looper.impl;
 
-import com.fanwe.lib.looper.ISDTimeouter;
+import com.fanwe.lib.looper.FTimeouter;
 
 /**
  * 等待执行类，等待Condition对象返回true的时候，执行设置的Runnable对象。可以设置等待超时，默认等待10秒，超时后执行超时Runnable
  */
-public class SDWaitRunner implements ISDTimeouter
+public class FWaitRunner implements FTimeouter
 {
     /**
      * 默认检测条件是否成立间隔
      */
     public static final long DEFAULT_PERIOD = 300;
 
-    private SDSimpleTimeoutLooper mLooper = new SDSimpleTimeoutLooper();
+    private FSimpleTimeoutLooper mLooper = new FSimpleTimeoutLooper();
     private Condition mCondition;
     private Runnable mRunnable;
 
-    public SDWaitRunner run(Runnable runnable)
+    public FWaitRunner run(Runnable runnable)
     {
         this.mRunnable = runnable;
         return this;
@@ -43,7 +43,7 @@ public class SDWaitRunner implements ISDTimeouter
      * @param condition
      * @return
      */
-    public SDWaitRunner condition(Condition condition)
+    public FWaitRunner condition(Condition condition)
     {
         this.mCondition = condition;
         return this;
@@ -54,7 +54,7 @@ public class SDWaitRunner implements ISDTimeouter
      *
      * @return
      */
-    public SDWaitRunner startWait()
+    public FWaitRunner startWait()
     {
         startWait(DEFAULT_PERIOD);
         return this;
@@ -66,7 +66,7 @@ public class SDWaitRunner implements ISDTimeouter
      * @param period 检测条件是否成立的触发间隔
      * @return
      */
-    public SDWaitRunner startWait(long period)
+    public FWaitRunner startWait(long period)
     {
         mLooper.start(period, mLoopRunnable);
         return this;
@@ -108,7 +108,7 @@ public class SDWaitRunner implements ISDTimeouter
      *
      * @return
      */
-    public SDWaitRunner stopWait()
+    public FWaitRunner stopWait()
     {
         mLooper.stop();
         return this;
@@ -127,35 +127,35 @@ public class SDWaitRunner implements ISDTimeouter
     }
 
     @Override
-    public SDWaitRunner setTimeoutRunnable(Runnable timeoutRunnable)
+    public FWaitRunner setTimeoutRunnable(Runnable timeoutRunnable)
     {
         mLooper.setTimeoutRunnable(timeoutRunnable);
         return this;
     }
 
     @Override
-    public SDWaitRunner runTimeoutRunnable()
+    public FWaitRunner runTimeoutRunnable()
     {
         mLooper.runTimeoutRunnable();
         return this;
     }
 
     @Override
-    public SDWaitRunner setTimeout(long timeout)
+    public FWaitRunner setTimeout(long timeout)
     {
         mLooper.setTimeout(timeout);
         return this;
     }
 
     @Override
-    public SDWaitRunner startTimeout()
+    public FWaitRunner startTimeout()
     {
         mLooper.startTimeout();
         return this;
     }
 
     @Override
-    public SDWaitRunner stopTimeout()
+    public FWaitRunner stopTimeout()
     {
         mLooper.stopTimeout();
         return this;

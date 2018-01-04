@@ -15,9 +15,9 @@
  */
 package com.fanwe.lib.looper.impl;
 
-import com.fanwe.lib.looper.ISDTimeouter;
+import com.fanwe.lib.looper.FTimeouter;
 
-public class SDSimpleTimeouter implements ISDTimeouter
+public class FSimpleTimeouter implements FTimeouter
 {
     private Runnable mTimeoutRunnable;
 
@@ -46,14 +46,14 @@ public class SDSimpleTimeouter implements ISDTimeouter
     }
 
     @Override
-    public synchronized ISDTimeouter setTimeoutRunnable(Runnable timeoutRunnable)
+    public synchronized FTimeouter setTimeoutRunnable(Runnable timeoutRunnable)
     {
         this.mTimeoutRunnable = timeoutRunnable;
         return this;
     }
 
     @Override
-    public synchronized ISDTimeouter runTimeoutRunnable()
+    public synchronized FTimeouter runTimeoutRunnable()
     {
         if (mTimeoutRunnable != null)
         {
@@ -63,21 +63,21 @@ public class SDSimpleTimeouter implements ISDTimeouter
     }
 
     @Override
-    public synchronized ISDTimeouter setTimeout(long timeout)
+    public synchronized FTimeouter setTimeout(long timeout)
     {
         mTimeout = timeout;
         return this;
     }
 
     @Override
-    public synchronized ISDTimeouter startTimeout()
+    public synchronized FTimeouter startTimeout()
     {
         mStartTime = System.currentTimeMillis();
         return this;
     }
 
     @Override
-    public synchronized ISDTimeouter stopTimeout()
+    public synchronized FTimeouter stopTimeout()
     {
         mStartTime = 0;
         return this;
