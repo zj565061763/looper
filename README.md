@@ -2,7 +2,7 @@
 ## Gradle
 [![](https://jitpack.io/v/zj565061763/looper.svg)](https://jitpack.io/#zj565061763/looper)
 
-## SDSimpleLooper
+## FSimpleLooper
 应用场景：<br>
 * 轮播图每隔一秒切换一页
 * 定时间隔刷新，定时间隔请求接口
@@ -11,12 +11,12 @@
 * 直播间循环遍历礼物view的播放状态，从礼物队列中取数据展示
 * ...
 
-该类是库中已经实现ISDLooper接口的实现类，内部基于Handler实现，较Timer性能消耗更少，构造方法支持传入Looper对象来指定要循环的线程，默认在主线程循环<br>
+该类是库中已经实现FLooper接口的实现类，内部基于Handler实现，较Timer性能消耗更少，构造方法支持传入Looper对象来指定要循环的线程，默认在主线程循环<br>
 ```java
-private void testSDSimpleLooper()
+private void testSimpleLooper()
 {
     //延迟500毫秒后，每隔1000毫秒触发一次设置的Runnable对象
-    ISDLooper looper = new SDSimpleLooper();
+    FLooper looper = new FSimpleLooper();
     looper.start(500, 1000, new Runnable()
     {
         @Override
@@ -29,11 +29,11 @@ private void testSDSimpleLooper()
 }
 ```
 
-## SDSimpleTimeoutLooper
+## FSimpleTimeoutLooper
 ```java
-private void testSDSimpleTimeoutLooper()
+private void testSimpleTimeoutLooper()
 {
-    SDSimpleTimeoutLooper looper = new SDSimpleTimeoutLooper();
+    FSimpleTimeoutLooper looper = new FSimpleTimeoutLooper();
     looper.setTimeout(5 * 1000) //设置超时时间
             .setTimeoutRunnable(new Runnable() //设置超时后需要执行的Runnable
             {
@@ -56,14 +56,14 @@ private void testSDSimpleTimeoutLooper()
 }
 ```
 
-## SDWaitRunner
+## FWaitRunner
 ```java
 /**
  * 等待某个条件成立后需要执行的Runnable
  */
-private void testSDWaitRunner()
+private void testWaitRunner()
 {
-    SDWaitRunner waitRunner = new SDWaitRunner()
+    FWaitRunner waitRunner = new FWaitRunner()
             .run(new Runnable() //设置需要等待执行的Runnable
             {
                 @Override
@@ -72,7 +72,7 @@ private void testSDWaitRunner()
                     Toast.makeText(getApplication(), "run", 0).show();
                 }
             })
-            .condition(new SDWaitRunner.Condition() //设置Runnable执行条件
+            .condition(new FWaitRunner.Condition() //设置Runnable执行条件
             {
                 @Override
                 public boolean canRun()
@@ -95,9 +95,9 @@ private void testSDWaitRunner()
     // waitRunner.stopWait(); //停止等待，在需要停止的地方停止，比如ui销毁
 }
 ```
-## ISDLooper
+## FLooper
 ```java
-public interface ISDLooper
+public interface FLooper
 {
     /**
      * 默认循环触发间隔
@@ -124,7 +124,7 @@ public interface ISDLooper
      * @param runnable 循环触发对象
      * @return
      */
-    ISDLooper start(Runnable runnable);
+    FLooper start(Runnable runnable);
 
     /**
      * 开始循环
@@ -133,7 +133,7 @@ public interface ISDLooper
      * @param runnable 循环触发对象
      * @return
      */
-    ISDLooper start(long period, Runnable runnable);
+    FLooper start(long period, Runnable runnable);
 
     /**
      * 开始循环
@@ -143,20 +143,20 @@ public interface ISDLooper
      * @param runnable 循环触发对象
      * @return
      */
-    ISDLooper start(long delay, long period, Runnable runnable);
+    FLooper start(long delay, long period, Runnable runnable);
 
     /**
      * 停止循环
      *
      * @return
      */
-    ISDLooper stop();
+    FLooper stop();
 
 }
 ```
-## ISDTimeouter
+## FTimeouter
 ```java
-public interface ISDTimeouter
+public interface FTimeouter
 {
     /**
      * 默认超时
@@ -176,12 +176,12 @@ public interface ISDTimeouter
     /**
      * 设置超时需要执行的Runnable
      */
-    ISDTimeouter setTimeoutRunnable(Runnable timeoutRunnable);
+    FTimeouter setTimeoutRunnable(Runnable timeoutRunnable);
 
     /**
      * 执行超时需要执行的Runnable
      */
-    ISDTimeouter runTimeoutRunnable();
+    FTimeouter runTimeoutRunnable();
 
     /**
      * 设置超时时间
@@ -189,17 +189,17 @@ public interface ISDTimeouter
      * @param timeout 大于0超时才有效
      * @return
      */
-    ISDTimeouter setTimeout(long timeout);
+    FTimeouter setTimeout(long timeout);
 
     /**
      * 开始超时计时
      */
-    ISDTimeouter startTimeout();
+    FTimeouter startTimeout();
 
     /**
      * 停止超时计时
      */
-    ISDTimeouter stopTimeout();
+    FTimeouter stopTimeout();
 }
 ```
 
