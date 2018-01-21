@@ -25,11 +25,10 @@ public class FSimpleLooper implements FLooper
 {
     private static final int MSG_WHAT = 1990;
 
+    private final Handler mHandler;
     private Runnable mRunnable;
     private long mPeriod = DEFAULT_PERIOD;
     private boolean mIsStarted = false;
-    private boolean mIsCancelled = false;
-    private Handler mHandler;
 
     public FSimpleLooper()
     {
@@ -42,22 +41,7 @@ public class FSimpleLooper implements FLooper
         {
             public void handleMessage(Message msg)
             {
-                synchronized (FSimpleLooper.this)
-                {
-                    if (mIsCancelled)
-                    {
-                        return;
-                    }
-
-                    if (mRunnable != null)
-                    {
-                        mRunnable.run();
-                        FSimpleLooper.this.sendMessageDelayed(mPeriod);
-                    } else
-                    {
-                        stop();
-                    }
-                }
+                loopIfNeed();
             }
         };
     }
@@ -75,7 +59,7 @@ public class FSimpleLooper implements FLooper
         {
             period = DEFAULT_PERIOD;
         }
-        this.mPeriod = period;
+        mPeriod = period;
     }
 
     @Override
@@ -97,20 +81,34 @@ public class FSimpleLooper implements FLooper
     {
         stop();
 
-        this.mIsStarted = true;
-        this.mIsCancelled = false;
-        this.mRunnable = runnable;
+        mIsStarted = true;
+        mRunnable = runnable;
 
         setPeriod(period);
 
-        sendMessageDelayed(delay);
+        sendMsgDelayed(delay);
         return this;
     }
 
-    private void sendMessageDelayed(long delay)
+    private void sendMsgDelayed(long delay)
     {
         Message msg = mHandler.obtainMessage(MSG_WHAT);
         mHandler.sendMessageDelayed(msg, delay);
+    }
+
+    private synchronized void loopIfNeed()
+    {
+        if (mIsStarted)
+        {
+            if (mRunnable != null)
+            {
+                mRunnable.run();
+                sendMsgDelayed(mPeriod);
+            } else
+            {
+                stop();
+            }
+        }
     }
 
     @Override
@@ -118,7 +116,6 @@ public class FSimpleLooper implements FLooper
     {
         mHandler.removeMessages(MSG_WHAT);
         mIsStarted = false;
-        mIsCancelled = true;
         return this;
     }
 }

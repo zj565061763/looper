@@ -2,6 +2,7 @@ package com.fanwe.www.looper;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.fanwe.lib.looper.FLooper;
@@ -20,8 +21,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        testWaitRunner();
-        testSimpleTimeoutLooper();
+        testSimpleLooper();
     }
 
     private void testSimpleTimeoutLooper()
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                Toast.makeText(getApplication(), "toast", 0).show();
+                Log.i(TAG, "looper run");
             }
         });
         // looper.stop(); //停止循环，在需要停止的地方停止，比如ui销毁
