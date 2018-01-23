@@ -3,9 +3,11 @@ package com.fanwe.www.looper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.fanwe.lib.looper.impl.FSimpleLooper;
 import com.fanwe.lib.looper.impl.FSimpleTimeoutLooper;
+import com.fanwe.lib.looper.impl.FWaitRunner;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity
 
     private FSimpleLooper mLooper = new FSimpleLooper();
     private FSimpleTimeoutLooper mTimeoutLooper = new FSimpleTimeoutLooper();
+    private FWaitRunner mWaitRunner = new FWaitRunner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,7 +23,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testSimpleTimeoutLooper();
+        testSimpleLooper();
     }
 
     private void testSimpleLooper()
@@ -58,11 +61,44 @@ public class MainActivity extends AppCompatActivity
                 });
     }
 
+    /**
+     * 等待某个条件成立后需要执行的Runnable
+     */
+    private void testWaitRunner()
+    {
+        mWaitRunner.run(new Runnable() //设置需要等待执行的Runnable
+        {
+            @Override
+            public void run()
+            {
+                Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
+            }
+        }).condition(new FWaitRunner.Condition() //设置Runnable执行条件
+        {
+            @Override
+            public boolean canRun()
+            {
+                // 返回true则Runnable立即执行，返回false则继续等待，如果超时会执行超时Runnable
+                return false;
+            }
+        }).setTimeout(5 * 1000)//设置等待超时时间
+                .setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
+                {
+                    @Override
+                    public void run()
+                    {
+                        Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .startWait(100); //开始等待，每100毫秒检测一次Runnable执行条件是否成立
+    }
+
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
         mLooper.stop(); // 停止循环
         mTimeoutLooper.stop(); // 停止循环
+        mWaitRunner.stopWait(); // 停止等待
     }
 }
