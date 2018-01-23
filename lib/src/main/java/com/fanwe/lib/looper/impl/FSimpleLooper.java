@@ -63,6 +63,12 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
+    public synchronized long getPeriod()
+    {
+        return mPeriod;
+    }
+
+    @Override
     public FLooper start(Runnable runnable)
     {
         start(0, mPeriod, runnable);

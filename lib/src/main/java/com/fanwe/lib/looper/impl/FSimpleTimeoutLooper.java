@@ -37,16 +37,22 @@ public class FSimpleTimeoutLooper implements FLooper, FTimeouter
     }
 
     @Override
+    public long getPeriod()
+    {
+        return mLooper.getPeriod();
+    }
+
+    @Override
     public FSimpleTimeoutLooper start(Runnable runnable)
     {
-        start(0, DEFAULT_PERIOD, runnable);
+        start(getPeriod(), runnable);
         return this;
     }
 
     @Override
     public FSimpleTimeoutLooper start(long period, Runnable runnable)
     {
-        start(0, DEFAULT_PERIOD, runnable);
+        start(0, period, runnable);
         return this;
     }
 

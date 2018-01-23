@@ -40,6 +40,13 @@ public interface FLooper
     void setPeriod(long period);
 
     /**
+     * 返回循环间隔
+     *
+     * @return
+     */
+    long getPeriod();
+
+    /**
      * 开始循环
      *
      * @param runnable 循环触发对象
