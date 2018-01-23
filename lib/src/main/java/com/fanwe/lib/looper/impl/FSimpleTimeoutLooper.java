@@ -20,8 +20,8 @@ import com.fanwe.lib.looper.FTimeouter;
 
 public class FSimpleTimeoutLooper implements FLooper, FTimeouter
 {
-    private FLooper mLooper = new FSimpleLooper();
-    private FTimeouter mTimeouter = new FSimpleTimeouter();
+    private final FLooper mLooper = new FSimpleLooper();
+    private final FTimeouter mTimeouter = new FSimpleTimeouter();
     private Runnable mRunnable;
 
     @Override
@@ -65,7 +65,7 @@ public class FSimpleTimeoutLooper implements FLooper, FTimeouter
         return this;
     }
 
-    private Runnable mInternalRunnable = new Runnable()
+    private final Runnable mInternalRunnable = new Runnable()
     {
         @Override
         public void run()
@@ -140,5 +140,4 @@ public class FSimpleTimeoutLooper implements FLooper, FTimeouter
         mTimeouter.stopTimeout();
         return this;
     }
-
 }
