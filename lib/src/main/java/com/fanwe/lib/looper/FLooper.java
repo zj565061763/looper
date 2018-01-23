@@ -79,5 +79,4 @@ public interface FLooper
      * @return
      */
     FLooper stop();
-
 }
