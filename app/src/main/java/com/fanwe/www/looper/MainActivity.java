@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getApplication(), "timeout", 0).show();
+                        Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
                     }
                 })
                 //延迟500毫秒，每隔1000毫秒触发一次Runnable，触发的同时会进行是否超时的判断，如果超时，执行超时Runnable
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getApplication(), "run", 0).show();
+                        Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getApplication(), "run", 0).show();
+                        Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .condition(new FWaitRunner.Condition() //设置Runnable执行条件
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getApplication(), "timeout", 0).show();
+                        Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .startWait(100); //开始等待，每100毫秒检测一次Runnable执行条件是否成立
