@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testSimpleLooper();
+        testSimpleTimeoutLooper();
     }
 
     private void testSimpleTimeoutLooper()
@@ -33,16 +33,16 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "looper timeout");
                     }
                 })
                 //延迟500毫秒，每隔1000毫秒触发一次Runnable，触发的同时会进行是否超时的判断，如果超时，执行超时Runnable
-                .start(500, 1000, new Runnable()
+                .start(1000, 1000, new Runnable()
                 {
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
+                        Log.i(TAG, "looper run");
                     }
                 });
     }
