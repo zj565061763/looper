@@ -33,22 +33,21 @@ public class FSimpleTimeouter implements FTimeouter
     @Override
     public synchronized boolean isTimeout()
     {
-        boolean result = false;
         if (mTimeout > 0 && mStartTime > 0)
         {
             if (System.currentTimeMillis() - mStartTime >= mTimeout)
             {
                 // 超时
-                result = true;
+                return true;
             }
         }
-        return result;
+        return false;
     }
 
     @Override
     public synchronized FTimeouter setTimeoutRunnable(Runnable timeoutRunnable)
     {
-        this.mTimeoutRunnable = timeoutRunnable;
+        mTimeoutRunnable = timeoutRunnable;
         return this;
     }
 
