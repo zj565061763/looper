@@ -53,7 +53,7 @@ public class FSimpleTimeoutLooper implements FLooper, FTimeouter
     @Override
     public FSimpleTimeoutLooper start(long delay, long period, Runnable runnable)
     {
-        this.mRunnable = runnable;
+        mRunnable = runnable;
         mLooper.start(delay, period, mRealRunnable);
         mTimeouter.startTimeout();
         return this;
