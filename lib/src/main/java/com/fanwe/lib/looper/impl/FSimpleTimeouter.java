@@ -19,10 +19,9 @@ import com.fanwe.lib.looper.FTimeouter;
 
 public class FSimpleTimeouter implements FTimeouter
 {
-    private Runnable mTimeoutRunnable;
-
-    private long mTimeout = DEFAULT_TIMEOUT;
+    private long mTimeout = 10 * 1000;
     private long mStartTime;
+    private Runnable mTimeoutRunnable;
 
     @Override
     public synchronized long getTimeout()

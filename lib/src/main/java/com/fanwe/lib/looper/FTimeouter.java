@@ -18,11 +18,6 @@ package com.fanwe.lib.looper;
 public interface FTimeouter
 {
     /**
-     * 默认超时
-     */
-    long DEFAULT_TIMEOUT = 10 * 1000;
-
-    /**
      * 获得设置的超时时间
      */
     long getTimeout();
