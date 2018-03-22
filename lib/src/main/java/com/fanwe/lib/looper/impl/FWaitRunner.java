@@ -82,6 +82,7 @@ public class FWaitRunner implements FTimeouter
     public void startWait(long period)
     {
         mLooper.start(period, mInternalRunnable);
+        mTimeouter.startTimeout();
     }
 
     private final Runnable mInternalRunnable = new Runnable()
