@@ -81,10 +81,10 @@ public class FConditionRunner implements FTimeouter
     }
 
     /**
-     * 开始等待执行<br>
-     * 默认每300毫秒检测一次条件是否成立
+     * 开始检测条件是否成立<br>
+     * 默认每300毫秒检测一次
      */
-    public void startWait()
+    public void startCheck()
     {
         mLooper.start(mInternalRunnable);
         mTimeouter.startTimeout();
@@ -97,13 +97,13 @@ public class FConditionRunner implements FTimeouter
         {
             if (mCondition == null)
             {
-                stopWait();
+                stopCheck();
                 return;
             }
             if (isTimeout())
             {
                 runTimeoutRunnable();
-                stopWait();
+                stopCheck();
                 return;
             }
 
@@ -113,7 +113,7 @@ public class FConditionRunner implements FTimeouter
                 {
                     mRunnable.run();
                 }
-                stopWait();
+                stopCheck();
             } else
             {
                 // wait...
@@ -122,9 +122,9 @@ public class FConditionRunner implements FTimeouter
     };
 
     /**
-     * 停止等待
+     * 停止检测
      */
-    public void stopWait()
+    public void stopCheck()
     {
         mLooper.stop();
     }

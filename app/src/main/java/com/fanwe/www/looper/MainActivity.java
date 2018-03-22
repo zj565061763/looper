@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .startWait(); //开始等待，默认每300毫秒检测一次条件是否成立
+                .startCheck(); //开始等待，默认每300毫秒检测一次条件是否成立
     }
 
     @Override
@@ -74,6 +74,6 @@ public class MainActivity extends AppCompatActivity
     {
         super.onDestroy();
         mLooper.stop(); // 停止循环
-        mWaitRunner.stopWait(); // 停止等待
+        mWaitRunner.stopCheck(); // 停止等待
     }
 }
