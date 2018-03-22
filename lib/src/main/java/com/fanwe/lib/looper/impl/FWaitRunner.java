@@ -21,7 +21,7 @@ import com.fanwe.lib.looper.FLooper;
 import com.fanwe.lib.looper.FTimeouter;
 
 /**
- * 等待执行类，等待Condition对象返回true的时候，执行设置的Runnable对象。可以设置等待超时，默认等待10秒，超时后执行超时Runnable
+ * 等待执行类，等待Condition对象返回true的时候，执行设置的Runnable对象。可以设置等待超时，默认超时时间为10秒，超时后执行超时Runnable
  */
 public class FWaitRunner implements FTimeouter
 {
