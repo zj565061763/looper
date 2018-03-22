@@ -113,7 +113,7 @@ public class FSimpleLooper implements FLooper
 
     private void sendMsgDelayed(long delay)
     {
-        Message msg = mHandler.obtainMessage(MSG_WHAT);
+        final Message msg = mHandler.obtainMessage(MSG_WHAT);
         mHandler.sendMessageDelayed(msg, delay);
     }
 
