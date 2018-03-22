@@ -29,43 +29,35 @@ private void testSimpleLooper()
 }
 ```
 
-## FWaitRunner
+## FConditionRunner
 ```java
-/**
- * 等待某个条件成立后需要执行的Runnable
- */
-private void testWaitRunner()
+private void testConditionRunner()
 {
-    FWaitRunner waitRunner = new FWaitRunner()
-            .run(new Runnable() //设置需要等待执行的Runnable
-            {
-                @Override
-                public void run()
-                {
-                    Toast.makeText(getApplication(), "run", 0).show();
-                }
-            })
-            .condition(new FWaitRunner.Condition() //设置Runnable执行条件
-            {
-                @Override
-                public boolean canRun()
-                {
-                    // 返回true则Runnable立即执行，返回false则继续等待，如果超时会执行超时Runnable
-                    return false;
-                }
-            })
-            .setTimeout(5 * 1000)//设置等待超时时间
+    mConditionRunner.run(new Runnable() //设置条件成立后要执行的Runnable对象
+    {
+        @Override
+        public void run()
+        {
+            Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
+        }
+    }).condition(new FConditionRunner.Condition() //设置Runnable的执行条件
+    {
+        @Override
+        public boolean canRun()
+        {
+            //返回true则Runnable立即执行，返回false则继续检测，如果超时会执行超时Runnable
+            return false;
+        }
+    }).setTimeout(5 * 1000)//设置检测超时时间
             .setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
             {
                 @Override
                 public void run()
                 {
-                    Toast.makeText(getApplication(), "timeout", 0).show();
+                    Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
                 }
             })
-            .startWait(100); //开始等待，每100毫秒检测一次Runnable执行条件是否成立
-
-    // waitRunner.stopWait(); //停止等待，在需要停止的地方停止，比如ui销毁
+            .startCheck(); //开始检测条件是否成立，默认每300毫秒检测一次
 }
 ```
 
