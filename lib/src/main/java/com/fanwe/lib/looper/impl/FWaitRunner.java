@@ -95,10 +95,19 @@ public class FWaitRunner implements FTimeouter
                 stopWait();
                 return;
             }
+            if (isTimeout())
+            {
+                runTimeoutRunnable();
+                stopWait();
+                return;
+            }
 
             if (mCondition.canRun())
             {
-                runRunnable();
+                if (mRunnable != null)
+                {
+                    mRunnable.run();
+                }
                 stopWait();
             } else
             {
@@ -106,14 +115,6 @@ public class FWaitRunner implements FTimeouter
             }
         }
     };
-
-    private void runRunnable()
-    {
-        if (mRunnable != null)
-        {
-            mRunnable.run();
-        }
-    }
 
     /**
      * 停止等待
