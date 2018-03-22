@@ -99,7 +99,10 @@ public class FSimpleLooper implements FLooper
     @Override
     public synchronized void start(long delay, long interval, Runnable runnable)
     {
-        stop();
+        if (mIsStarted)
+        {
+            return;
+        }
 
         mIsStarted = true;
         mRunnable = runnable;
