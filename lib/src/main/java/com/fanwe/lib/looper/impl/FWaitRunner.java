@@ -90,19 +90,19 @@ public class FWaitRunner implements FTimeouter
         @Override
         public void run()
         {
-            if (mCondition != null)
-            {
-                if (mCondition.canRun())
-                {
-                    runRunnable();
-                    stopWait();
-                } else
-                {
-                    // wait...
-                }
-            } else
+            if (mCondition == null)
             {
                 stopWait();
+                return;
+            }
+
+            if (mCondition.canRun())
+            {
+                runRunnable();
+                stopWait();
+            } else
+            {
+                // wait...
             }
         }
     };
