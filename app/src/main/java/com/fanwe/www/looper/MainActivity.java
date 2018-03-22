@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity
 
     private void testConditionRunner()
     {
-        mConditionRunner.run(new Runnable() //设置需要执行的Runnable
+        mConditionRunner.run(new Runnable() //设置条件成立后要执行的Runnable对象
         {
             @Override
             public void run()
             {
                 Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
             }
-        }).condition(new FConditionRunner.Condition() //设置Runnable执行条件
+        }).condition(new FConditionRunner.Condition() //设置Runnable的执行条件
         {
             @Override
             public boolean canRun()
