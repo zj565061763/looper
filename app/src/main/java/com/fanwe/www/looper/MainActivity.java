@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
                 //返回true则Runnable立即执行，返回false则继续检测，如果超时会执行超时Runnable
                 return false;
             }
-        }).setTimeout(5 * 1000)//设置检测超时时间
+        }).setTimeout(5 * 1000)//设置超时时间，默认10秒
                 .setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
                 {
                     @Override

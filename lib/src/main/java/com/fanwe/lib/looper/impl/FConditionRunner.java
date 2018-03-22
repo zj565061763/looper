@@ -41,7 +41,8 @@ public class FConditionRunner implements FTimeouter
     public FConditionRunner(Looper looper)
     {
         mLooper = new FSimpleLooper(looper);
-        setInterval(300);
+        setInterval(300); //默认检测间隔，300毫秒
+        setTimeout(10 * 1000); //默认超时时间，10秒
     }
 
     /**
