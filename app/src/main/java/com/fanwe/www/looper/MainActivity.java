@@ -6,14 +6,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.fanwe.lib.looper.impl.FSimpleLooper;
-import com.fanwe.lib.looper.impl.FWaitRunner;
+import com.fanwe.lib.looper.impl.FConditionRunner;
 
 public class MainActivity extends AppCompatActivity
 {
     public static final String TAG = "MainActivity";
 
     private FSimpleLooper mLooper = new FSimpleLooper();
-    private FWaitRunner mWaitRunner = new FWaitRunner();
+    private FConditionRunner mWaitRunner = new FConditionRunner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
             {
                 Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
             }
-        }).condition(new FWaitRunner.Condition() //设置Runnable执行条件
+        }).condition(new FConditionRunner.Condition() //设置Runnable执行条件
         {
             @Override
             public boolean canRun()

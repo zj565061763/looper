@@ -21,9 +21,11 @@ import com.fanwe.lib.looper.FLooper;
 import com.fanwe.lib.looper.FTimeouter;
 
 /**
- * 等待执行类，等待Condition对象返回true的时候，执行设置的Runnable对象。可以设置等待超时，默认超时时间为10秒，超时后执行超时Runnable
+ * 间隔的检测Condition对象的返回值<br>
+ * 返回true的时候，执行设置的Runnable对象，结束检测<br>
+ * 返回false的时候，检查是否超时(如果超时，执行超时Runnable后结束检测；如果未超时，等待下一次检测)
  */
-public class FWaitRunner implements FTimeouter
+public class FConditionRunner implements FTimeouter
 {
     private final FLooper mLooper;
     private final FTimeouter mTimeouter = new FSimpleTimeouter();
@@ -31,12 +33,12 @@ public class FWaitRunner implements FTimeouter
     private Condition mCondition;
     private Runnable mRunnable;
 
-    public FWaitRunner()
+    public FConditionRunner()
     {
         this(Looper.getMainLooper());
     }
 
-    public FWaitRunner(Looper looper)
+    public FConditionRunner(Looper looper)
     {
         mLooper = new FSimpleLooper(looper);
         setInterval(300);
@@ -48,7 +50,7 @@ public class FWaitRunner implements FTimeouter
      * @param interval
      * @return
      */
-    public FWaitRunner setInterval(long interval)
+    public FConditionRunner setInterval(long interval)
     {
         mLooper.setInterval(interval);
         return this;
@@ -60,7 +62,7 @@ public class FWaitRunner implements FTimeouter
      * @param runnable
      * @return
      */
-    public FWaitRunner run(Runnable runnable)
+    public FConditionRunner run(Runnable runnable)
     {
         mRunnable = runnable;
         return this;
@@ -72,7 +74,7 @@ public class FWaitRunner implements FTimeouter
      * @param condition
      * @return
      */
-    public FWaitRunner condition(Condition condition)
+    public FConditionRunner condition(Condition condition)
     {
         mCondition = condition;
         return this;
@@ -140,28 +142,28 @@ public class FWaitRunner implements FTimeouter
     }
 
     @Override
-    public FWaitRunner setTimeoutRunnable(Runnable timeoutRunnable)
+    public FConditionRunner setTimeoutRunnable(Runnable timeoutRunnable)
     {
         mTimeouter.setTimeoutRunnable(timeoutRunnable);
         return this;
     }
 
     @Override
-    public FWaitRunner runTimeoutRunnable()
+    public FConditionRunner runTimeoutRunnable()
     {
         mTimeouter.runTimeoutRunnable();
         return this;
     }
 
     @Override
-    public FWaitRunner setTimeout(long timeout)
+    public FConditionRunner setTimeout(long timeout)
     {
         mTimeouter.setTimeout(timeout);
         return this;
     }
 
     @Override
-    public FWaitRunner startTimeout()
+    public FConditionRunner startTimeout()
     {
         mTimeouter.startTimeout();
         return this;
