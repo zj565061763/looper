@@ -85,21 +85,19 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public FLooper start(Runnable runnable)
+    public void start(Runnable runnable)
     {
         start(0, mPeriod, runnable);
-        return this;
     }
 
     @Override
-    public FLooper start(long period, Runnable runnable)
+    public void start(long period, Runnable runnable)
     {
         start(0, period, runnable);
-        return this;
     }
 
     @Override
-    public synchronized FLooper start(long delay, long period, Runnable runnable)
+    public synchronized void start(long delay, long period, Runnable runnable)
     {
         stop();
 
@@ -107,9 +105,7 @@ public class FSimpleLooper implements FLooper
         mRunnable = runnable;
 
         setPeriod(period);
-
         sendMsgDelayed(delay);
-        return this;
     }
 
     private void sendMsgDelayed(long delay)
@@ -119,10 +115,9 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public synchronized FLooper stop()
+    public synchronized void stop()
     {
         mHandler.removeMessages(MSG_WHAT);
         mIsStarted = false;
-        return this;
     }
 }

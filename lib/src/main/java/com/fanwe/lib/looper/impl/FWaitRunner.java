@@ -15,6 +15,9 @@
  */
 package com.fanwe.lib.looper.impl;
 
+import android.os.Looper;
+
+import com.fanwe.lib.looper.FLooper;
 import com.fanwe.lib.looper.FTimeouter;
 
 /**
@@ -22,15 +25,28 @@ import com.fanwe.lib.looper.FTimeouter;
  */
 public class FWaitRunner implements FTimeouter
 {
-    /**
-     * 默认检测条件是否成立间隔
-     */
-    public static final long DEFAULT_PERIOD = 300;
+    private final FLooper mLooper;
+    private final FTimeouter mTimeouter = new FSimpleTimeouter();
 
-    private final FSimpleTimeoutLooper mLooper = new FSimpleTimeoutLooper();
     private Condition mCondition;
     private Runnable mRunnable;
 
+    public FWaitRunner()
+    {
+        this(Looper.getMainLooper());
+    }
+
+    public FWaitRunner(Looper looper)
+    {
+        mLooper = new FSimpleLooper(looper);
+    }
+
+    /**
+     * 设置条件成立后要执行的Runnable对象
+     *
+     * @param runnable
+     * @return
+     */
     public FWaitRunner run(Runnable runnable)
     {
         mRunnable = runnable;
@@ -50,26 +66,22 @@ public class FWaitRunner implements FTimeouter
     }
 
     /**
-     * 开始等待执行
-     *
-     * @return
+     * 开始等待执行<br>
+     * 默认每300毫秒检测一次条件是否成立
      */
-    public FWaitRunner startWait()
+    public void startWait()
     {
-        startWait(DEFAULT_PERIOD);
-        return this;
+        startWait(300);
     }
 
     /**
      * 开始等待执行
      *
-     * @param period 检测条件是否成立的触发间隔
-     * @return
+     * @param period 检测条件是否成立的时间间隔(毫秒)
      */
-    public FWaitRunner startWait(long period)
+    public void startWait(long period)
     {
         mLooper.start(period, mInternalRunnable);
-        return this;
     }
 
     private final Runnable mInternalRunnable = new Runnable()
@@ -104,59 +116,49 @@ public class FWaitRunner implements FTimeouter
 
     /**
      * 停止等待
-     *
-     * @return
      */
-    public FWaitRunner stopWait()
+    public void stopWait()
     {
         mLooper.stop();
-        return this;
     }
 
     @Override
     public long getTimeout()
     {
-        return mLooper.getTimeout();
+        return mTimeouter.getTimeout();
     }
 
     @Override
     public boolean isTimeout()
     {
-        return mLooper.isTimeout();
+        return mTimeouter.isTimeout();
     }
 
     @Override
     public FWaitRunner setTimeoutRunnable(Runnable timeoutRunnable)
     {
-        mLooper.setTimeoutRunnable(timeoutRunnable);
+        mTimeouter.setTimeoutRunnable(timeoutRunnable);
         return this;
     }
 
     @Override
     public FWaitRunner runTimeoutRunnable()
     {
-        mLooper.runTimeoutRunnable();
+        mTimeouter.runTimeoutRunnable();
         return this;
     }
 
     @Override
     public FWaitRunner setTimeout(long timeout)
     {
-        mLooper.setTimeout(timeout);
+        mTimeouter.setTimeout(timeout);
         return this;
     }
 
     @Override
     public FWaitRunner startTimeout()
     {
-        mLooper.startTimeout();
-        return this;
-    }
-
-    @Override
-    public FWaitRunner stopTimeout()
-    {
-        mLooper.stopTimeout();
+        mTimeouter.startTimeout();
         return this;
     }
 
@@ -169,5 +171,4 @@ public class FWaitRunner implements FTimeouter
          */
         boolean canRun();
     }
-
 }

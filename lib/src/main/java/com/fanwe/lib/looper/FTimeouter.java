@@ -54,9 +54,4 @@ public interface FTimeouter
      * 开始超时计时
      */
     FTimeouter startTimeout();
-
-    /**
-     * 停止超时计时
-     */
-    FTimeouter stopTimeout();
 }

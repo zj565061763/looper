@@ -49,19 +49,17 @@ public interface FLooper
     /**
      * 开始循环
      *
-     * @param runnable 循环触发对象
-     * @return
+     * @param runnable
      */
-    FLooper start(Runnable runnable);
+    void start(Runnable runnable);
 
     /**
      * 开始循环
      *
      * @param period   循环触发间隔
      * @param runnable 循环触发对象
-     * @return
      */
-    FLooper start(long period, Runnable runnable);
+    void start(long period, Runnable runnable);
 
     /**
      * 开始循环
@@ -69,14 +67,11 @@ public interface FLooper
      * @param delay    延迟多久开始循环
      * @param period   循环触发间隔
      * @param runnable 循环触发对象
-     * @return
      */
-    FLooper start(long delay, long period, Runnable runnable);
+    void start(long delay, long period, Runnable runnable);
 
     /**
      * 停止循环
-     *
-     * @return
      */
-    FLooper stop();
+    void stop();
 }

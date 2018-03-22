@@ -74,11 +74,4 @@ public class FSimpleTimeouter implements FTimeouter
         mStartTime = System.currentTimeMillis();
         return this;
     }
-
-    @Override
-    public synchronized FTimeouter stopTimeout()
-    {
-        mStartTime = 0;
-        return this;
-    }
 }
