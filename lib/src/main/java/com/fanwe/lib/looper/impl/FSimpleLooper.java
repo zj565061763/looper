@@ -39,11 +39,27 @@ public class FSimpleLooper implements FLooper
     {
         mHandler = new Handler(looper)
         {
+            @Override
             public void handleMessage(Message msg)
             {
                 loopIfNeed();
             }
         };
+    }
+
+    private synchronized void loopIfNeed()
+    {
+        if (mIsStarted)
+        {
+            if (mRunnable != null)
+            {
+                mRunnable.run();
+                sendMsgDelayed(mPeriod);
+            } else
+            {
+                stop();
+            }
+        }
     }
 
     @Override
@@ -100,21 +116,6 @@ public class FSimpleLooper implements FLooper
     {
         Message msg = mHandler.obtainMessage(MSG_WHAT);
         mHandler.sendMessageDelayed(msg, delay);
-    }
-
-    private synchronized void loopIfNeed()
-    {
-        if (mIsStarted)
-        {
-            if (mRunnable != null)
-            {
-                mRunnable.run();
-                sendMsgDelayed(mPeriod);
-            } else
-            {
-                stop();
-            }
-        }
     }
 
     @Override
