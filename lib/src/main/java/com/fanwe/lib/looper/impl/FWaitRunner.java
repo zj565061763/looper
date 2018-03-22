@@ -39,6 +39,19 @@ public class FWaitRunner implements FTimeouter
     public FWaitRunner(Looper looper)
     {
         mLooper = new FSimpleLooper(looper);
+        setInterval(300);
+    }
+
+    /**
+     * 设置检测条件是否成立的时间间隔(毫秒)
+     *
+     * @param interval
+     * @return
+     */
+    public FWaitRunner setInterval(long interval)
+    {
+        mLooper.setInterval(interval);
+        return this;
     }
 
     /**
@@ -71,17 +84,7 @@ public class FWaitRunner implements FTimeouter
      */
     public void startWait()
     {
-        startWait(300);
-    }
-
-    /**
-     * 开始等待执行
-     *
-     * @param period 检测条件是否成立的时间间隔(毫秒)
-     */
-    public void startWait(long period)
-    {
-        mLooper.start(period, mInternalRunnable);
+        mLooper.start(mInternalRunnable);
         mTimeouter.startTimeout();
     }
 
