@@ -23,7 +23,7 @@ public interface FLooper
     /**
      * 默认循环触发间隔
      */
-    long DEFAULT_PERIOD = 300;
+    long DEFAULT_INTERVAL = 300;
 
     /**
      * 是否已经开始循环
@@ -35,16 +35,16 @@ public interface FLooper
     /**
      * 设置循环触发间隔
      *
-     * @param period
+     * @param interval
      */
-    void setPeriod(long period);
+    void setInterval(long interval);
 
     /**
      * 返回循环间隔
      *
      * @return
      */
-    long getPeriod();
+    long getInterval();
 
     /**
      * 开始循环
@@ -56,19 +56,19 @@ public interface FLooper
     /**
      * 开始循环
      *
-     * @param period   循环触发间隔
+     * @param interval 循环触发间隔
      * @param runnable 循环触发对象
      */
-    void start(long period, Runnable runnable);
+    void start(long interval, Runnable runnable);
 
     /**
      * 开始循环
      *
      * @param delay    延迟多久开始循环
-     * @param period   循环触发间隔
+     * @param interval 循环触发间隔
      * @param runnable 循环触发对象
      */
-    void start(long delay, long period, Runnable runnable);
+    void start(long delay, long interval, Runnable runnable);
 
     /**
      * 停止循环

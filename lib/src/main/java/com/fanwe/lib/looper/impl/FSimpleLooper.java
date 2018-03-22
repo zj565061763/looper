@@ -27,7 +27,7 @@ public class FSimpleLooper implements FLooper
 
     private final Handler mHandler;
     private Runnable mRunnable;
-    private long mPeriod = DEFAULT_PERIOD;
+    private long mInterval = DEFAULT_INTERVAL;
     private boolean mIsStarted = false;
 
     public FSimpleLooper()
@@ -54,7 +54,7 @@ public class FSimpleLooper implements FLooper
             if (mRunnable != null)
             {
                 mRunnable.run();
-                sendMsgDelayed(mPeriod);
+                sendMsgDelayed(mInterval);
             } else
             {
                 stop();
@@ -69,42 +69,42 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public synchronized void setPeriod(long period)
+    public synchronized void setInterval(long interval)
     {
-        if (period <= 0)
+        if (interval <= 0)
         {
-            period = DEFAULT_PERIOD;
+            interval = DEFAULT_INTERVAL;
         }
-        mPeriod = period;
+        mInterval = interval;
     }
 
     @Override
-    public synchronized long getPeriod()
+    public synchronized long getInterval()
     {
-        return mPeriod;
+        return mInterval;
     }
 
     @Override
     public void start(Runnable runnable)
     {
-        start(0, mPeriod, runnable);
+        start(0, mInterval, runnable);
     }
 
     @Override
-    public void start(long period, Runnable runnable)
+    public void start(long interval, Runnable runnable)
     {
-        start(0, period, runnable);
+        start(0, interval, runnable);
     }
 
     @Override
-    public synchronized void start(long delay, long period, Runnable runnable)
+    public synchronized void start(long delay, long interval, Runnable runnable)
     {
         stop();
 
         mIsStarted = true;
         mRunnable = runnable;
 
-        setPeriod(period);
+        setInterval(interval);
         sendMsgDelayed(delay);
     }
 
