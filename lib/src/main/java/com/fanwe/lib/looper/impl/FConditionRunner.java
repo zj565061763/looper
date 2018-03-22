@@ -81,8 +81,7 @@ public class FConditionRunner implements FTimeouter
     }
 
     /**
-     * 开始检测条件是否成立<br>
-     * 默认每300毫秒检测一次
+     * 开始检测条件是否成立，默认每300毫秒检测一次
      */
     public void startCheck()
     {

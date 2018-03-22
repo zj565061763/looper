@@ -5,15 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.fanwe.lib.looper.impl.FSimpleLooper;
 import com.fanwe.lib.looper.impl.FConditionRunner;
+import com.fanwe.lib.looper.impl.FSimpleLooper;
 
 public class MainActivity extends AppCompatActivity
 {
     public static final String TAG = "MainActivity";
 
     private FSimpleLooper mLooper = new FSimpleLooper();
-    private FConditionRunner mWaitRunner = new FConditionRunner();
+    private FConditionRunner mConditionRunner = new FConditionRunner();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,12 +37,9 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    /**
-     * 等待某个条件成立后需要执行的Runnable
-     */
-    private void testWaitRunner()
+    private void testConditionRunner()
     {
-        mWaitRunner.run(new Runnable() //设置需要等待执行的Runnable
+        mConditionRunner.run(new Runnable() //设置需要执行的Runnable
         {
             @Override
             public void run()
@@ -54,10 +51,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean canRun()
             {
-                // 返回true则Runnable立即执行，返回false则继续等待，如果超时会执行超时Runnable
+                //返回true则Runnable立即执行，返回false则继续检测，如果超时会执行超时Runnable
                 return false;
             }
-        }).setTimeout(5 * 1000)//设置等待超时时间
+        }).setTimeout(5 * 1000)//设置检测超时时间
                 .setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
                 {
                     @Override
@@ -66,7 +63,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .startCheck(); //开始等待，默认每300毫秒检测一次条件是否成立
+                .startCheck(); //开始检测条件是否成立，默认每300毫秒检测一次
     }
 
     @Override
@@ -74,6 +71,6 @@ public class MainActivity extends AppCompatActivity
     {
         super.onDestroy();
         mLooper.stop(); // 停止循环
-        mWaitRunner.stopCheck(); // 停止等待
+        mConditionRunner.stopCheck(); // 停止检测
     }
 }
