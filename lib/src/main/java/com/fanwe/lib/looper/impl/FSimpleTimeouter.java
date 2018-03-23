@@ -19,7 +19,10 @@ import com.fanwe.lib.looper.FTimeouter;
 
 public class FSimpleTimeouter implements FTimeouter
 {
-    private long mTimeout;
+    /**
+     * 超时时间，默认10秒
+     */
+    private long mTimeout = 10 * 1000;
     private long mStartTime;
     private Runnable mTimeoutRunnable;
 

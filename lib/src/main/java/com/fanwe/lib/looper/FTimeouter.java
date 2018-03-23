@@ -38,9 +38,9 @@ public interface FTimeouter
     void runTimeoutRunnable();
 
     /**
-     * 设置超时时间
+     * 设置超时时间(毫秒)
      *
-     * @param timeout 大于0超时才有效
+     * @param timeout
      * @return
      */
     void setTimeout(long timeout);
