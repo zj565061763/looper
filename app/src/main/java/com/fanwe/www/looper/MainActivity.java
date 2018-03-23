@@ -3,7 +3,6 @@ package com.fanwe.www.looper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.fanwe.lib.looper.impl.FConditionRunner;
 import com.fanwe.lib.looper.impl.FSimpleLooper;
@@ -22,6 +21,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         testSimpleLooper();
+        testConditionRunner();
     }
 
     private void testSimpleLooper()
