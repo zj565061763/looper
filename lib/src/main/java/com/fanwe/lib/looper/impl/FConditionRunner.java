@@ -70,22 +70,13 @@ public class FConditionRunner implements FTimeouter
     }
 
     /**
-     * 设置执行条件
+     * 开始检测条件是否成立，默认每300毫秒检测一次
      *
      * @param condition
-     * @return
      */
-    public FConditionRunner condition(Condition condition)
+    public void startCheck(Condition condition)
     {
         mCondition = condition;
-        return this;
-    }
-
-    /**
-     * 开始检测条件是否成立，默认每300毫秒检测一次
-     */
-    public void startCheck()
-    {
         mLooper.start(mCheckRunnable);
         mTimeouter.startTimeout();
     }
