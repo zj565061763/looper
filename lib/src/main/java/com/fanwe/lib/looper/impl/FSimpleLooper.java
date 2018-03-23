@@ -111,14 +111,12 @@ public class FSimpleLooper implements FLooper
     {
         mRunnable = runnable;
 
-        if (mIsStarted)
+        if (!mIsStarted)
         {
-            return;
+            mIsStarted = true;
+            onStartLoop();
+            loopIfNeed();
         }
-
-        mIsStarted = true;
-        onStartLoop();
-        loopIfNeed();
     }
 
     @Override
