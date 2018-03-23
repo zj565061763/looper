@@ -109,14 +109,14 @@ public class FSimpleLooper implements FLooper
     @Override
     public synchronized final void start(Runnable runnable)
     {
+        mRunnable = runnable;
+
         if (mIsStarted)
         {
             return;
         }
 
         mIsStarted = true;
-        mRunnable = runnable;
-
         onStartLoop();
         loopIfNeed();
     }
