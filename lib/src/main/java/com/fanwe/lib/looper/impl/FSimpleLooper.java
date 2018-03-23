@@ -142,10 +142,16 @@ public class FSimpleLooper implements FLooper
         onStopLoop();
     }
 
+    /**
+     * 循环开始回调
+     */
     protected void onStartLoop()
     {
     }
 
+    /**
+     * 循环结束回调
+     */
     protected void onStopLoop()
     {
     }

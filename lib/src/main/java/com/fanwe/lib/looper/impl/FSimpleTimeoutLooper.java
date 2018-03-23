@@ -1,10 +1,30 @@
 package com.fanwe.lib.looper.impl;
 
+import android.os.Looper;
+
 import com.fanwe.lib.looper.FTimeouter;
 
 public class FSimpleTimeoutLooper extends FSimpleLooper implements FTimeouter
 {
     private final FTimeouter mTimeouter = new FSimpleTimeouter();
+
+    public FSimpleTimeoutLooper()
+    {
+        this(Looper.getMainLooper());
+    }
+
+    public FSimpleTimeoutLooper(Looper looper)
+    {
+        super(looper);
+        setTimeout(10 * 1000); //默认超时时间10秒
+    }
+
+    @Override
+    protected void onStartLoop()
+    {
+        super.onStartLoop();
+        startTimeout();
+    }
 
     @Override
     protected boolean onLoop()
