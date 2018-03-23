@@ -86,11 +86,11 @@ public class FConditionRunner implements FTimeouter
      */
     public void startCheck()
     {
-        mLooper.start(mInternalRunnable);
+        mLooper.start(mCheckRunnable);
         mTimeouter.startTimeout();
     }
 
-    private final Runnable mInternalRunnable = new Runnable()
+    private final Runnable mCheckRunnable = new Runnable()
     {
         @Override
         public void run()
