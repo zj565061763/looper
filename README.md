@@ -75,4 +75,48 @@ public class MainActivity extends AppCompatActivity
     }
 }
 ```
+```java
+public interface FLooper
+{
+    /**
+     * 是否已经开始循环
+     *
+     * @return
+     */
+    boolean isStarted();
 
+    /**
+     * 返回循环间隔
+     *
+     * @return
+     */
+    long getInterval();
+
+    /**
+     * 设置循环触发间隔，大于0才有效
+     *
+     * @param interval 循环触发间隔(毫秒)
+     */
+    void setInterval(long interval);
+
+    /**
+     * 开始循环
+     *
+     * @param runnable
+     */
+    void start(Runnable runnable);
+
+    /**
+     * 延迟多少毫秒后开始循环
+     *
+     * @param delayMillis
+     * @param runnable
+     */
+    void startDelayed(long delayMillis, Runnable runnable);
+
+    /**
+     * 停止循环
+     */
+    void stop();
+}
+```
