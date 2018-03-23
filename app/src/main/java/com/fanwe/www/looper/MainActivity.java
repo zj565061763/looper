@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity
 
     private void testSimpleLooper()
     {
-        //延迟500毫秒后，每隔1000毫秒触发一次设置的Runnable对象
-        mLooper.start(500, 1000, new Runnable()
+        mLooper.setInterval(1000);//设置每隔1000毫秒触发一次
+        mLooper.start(new Runnable()
         {
             @Override
             public void run()
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
                 Log.e(TAG, "timeout");
             }
         });
-        mTimeoutLooper.setInterval(1000); //每隔1000毫秒触发一次
+        mTimeoutLooper.setInterval(1000); //设置每隔1000毫秒触发一次
         mTimeoutLooper.start(new Runnable()
         {
             @Override

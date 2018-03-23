@@ -108,19 +108,7 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public final void start(Runnable runnable)
-    {
-        start(0, mInterval, runnable);
-    }
-
-    @Override
-    public final void start(long interval, Runnable runnable)
-    {
-        start(0, interval, runnable);
-    }
-
-    @Override
-    public synchronized final void start(long delay, long interval, Runnable runnable)
+    public synchronized final void start(Runnable runnable)
     {
         if (mIsStarted)
         {
@@ -130,9 +118,8 @@ public class FSimpleLooper implements FLooper
         mIsStarted = true;
         mRunnable = runnable;
 
-        setInterval(interval);
-        sendMsgDelayed(delay);
         onStartLoop();
+        loopIfNeed();
     }
 
     @Override

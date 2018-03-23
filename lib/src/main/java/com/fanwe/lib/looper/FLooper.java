@@ -55,23 +55,6 @@ public interface FLooper
     void start(Runnable runnable);
 
     /**
-     * 开始循环
-     *
-     * @param interval 循环触发间隔
-     * @param runnable 循环触发对象
-     */
-    void start(long interval, Runnable runnable);
-
-    /**
-     * 开始循环
-     *
-     * @param delay    延迟多久开始循环
-     * @param interval 循环触发间隔
-     * @param runnable 循环触发对象
-     */
-    void start(long delay, long interval, Runnable runnable);
-
-    /**
      * 停止循环
      */
     void stop();
