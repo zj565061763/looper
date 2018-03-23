@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
                 .startCheck(new FConditionRunner.Condition() //开始检测条件是否成立，默认每300毫秒检测一次
                 {
                     @Override
-                    public boolean canRun()
+                    public boolean run()
                     {
                         //返回true则Runnable立即执行，返回false则继续检测，如果超时会执行超时Runnable
                         return false;

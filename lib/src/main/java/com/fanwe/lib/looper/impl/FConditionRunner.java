@@ -98,7 +98,7 @@ public class FConditionRunner implements FTimeouter
                 return;
             }
 
-            if (mCondition.canRun())
+            if (mCondition.run())
             {
                 if (mRunnable != null)
                 {
@@ -167,6 +167,6 @@ public class FConditionRunner implements FTimeouter
          *
          * @return true-可以执行
          */
-        boolean canRun();
+        boolean run();
     }
 }
