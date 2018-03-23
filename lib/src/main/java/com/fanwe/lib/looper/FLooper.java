@@ -33,18 +33,18 @@ public interface FLooper
     boolean isStarted();
 
     /**
-     * 设置循环触发间隔
-     *
-     * @param interval
-     */
-    void setInterval(long interval);
-
-    /**
      * 返回循环间隔
      *
      * @return
      */
     long getInterval();
+
+    /**
+     * 设置循环触发间隔
+     *
+     * @param interval
+     */
+    void setInterval(long interval);
 
     /**
      * 开始循环

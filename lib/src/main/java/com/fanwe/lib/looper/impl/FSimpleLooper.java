@@ -62,10 +62,22 @@ public class FSimpleLooper implements FLooper
         }
     }
 
+    private void sendMsgDelayed(long delay)
+    {
+        final Message msg = mHandler.obtainMessage(MSG_WHAT);
+        mHandler.sendMessageDelayed(msg, delay);
+    }
+
     @Override
-    public synchronized boolean isStarted()
+    public boolean isStarted()
     {
         return mIsStarted;
+    }
+
+    @Override
+    public long getInterval()
+    {
+        return mInterval;
     }
 
     @Override
@@ -76,12 +88,6 @@ public class FSimpleLooper implements FLooper
             interval = DEFAULT_INTERVAL;
         }
         mInterval = interval;
-    }
-
-    @Override
-    public synchronized long getInterval()
-    {
-        return mInterval;
     }
 
     @Override
@@ -109,12 +115,6 @@ public class FSimpleLooper implements FLooper
 
         setInterval(interval);
         sendMsgDelayed(delay);
-    }
-
-    private void sendMsgDelayed(long delay)
-    {
-        final Message msg = mHandler.obtainMessage(MSG_WHAT);
-        mHandler.sendMessageDelayed(msg, delay);
     }
 
     @Override
