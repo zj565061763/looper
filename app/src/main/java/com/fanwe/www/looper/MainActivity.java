@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                Toast.makeText(getApplication(), "run", Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "run");
             }
         }).condition(new FConditionRunner.Condition() //设置Runnable的执行条件
         {
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run()
                     {
-                        Toast.makeText(getApplication(), "timeout", Toast.LENGTH_SHORT).show();
+                        Log.i(TAG, "timeout");
                     }
                 })
                 .startCheck(); //开始检测条件是否成立，默认每300毫秒检测一次
