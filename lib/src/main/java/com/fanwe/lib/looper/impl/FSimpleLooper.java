@@ -27,7 +27,10 @@ public class FSimpleLooper implements FLooper
 
     private final Handler mHandler;
     private Runnable mRunnable;
-    private long mInterval = DEFAULT_INTERVAL;
+    /**
+     * 循环触发间隔，默认300毫秒
+     */
+    private long mInterval = 300;
     private boolean mIsStarted = false;
 
     public FSimpleLooper()

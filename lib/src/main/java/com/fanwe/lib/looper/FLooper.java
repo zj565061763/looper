@@ -21,11 +21,6 @@ package com.fanwe.lib.looper;
 public interface FLooper
 {
     /**
-     * 默认循环触发间隔
-     */
-    long DEFAULT_INTERVAL = 300;
-
-    /**
      * 是否已经开始循环
      *
      * @return
@@ -40,7 +35,7 @@ public interface FLooper
     long getInterval();
 
     /**
-     * 设置循环触发间隔，大于0才有效，默认300毫秒
+     * 设置循环触发间隔，大于0才有效
      *
      * @param interval 循环触发间隔(毫秒)
      */
