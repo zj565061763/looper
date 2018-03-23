@@ -1,8 +1,4 @@
-
-## Gradle
-[![](https://jitpack.io/v/zj565061763/looper.svg)](https://jitpack.io/#zj565061763/looper)
-
-## FSimpleLooper
+## About
 应用场景：<br>
 * 轮播图每隔一秒切换一页
 * 定时间隔刷新，定时间隔请求接口
@@ -11,7 +7,12 @@
 * 直播间循环遍历礼物view的播放状态，从礼物队列中取数据展示
 * ...
 
-该类是库中已经实现FLooper接口的实现类，内部基于Handler实现，较Timer性能消耗更少，构造方法支持传入Looper对象来指定要循环的线程，默认在主线程循环<br>
+## Gradle
+[![](https://jitpack.io/v/zj565061763/looper.svg)](https://jitpack.io/#zj565061763/looper)
+
+## 简单使用
+
+FSimpleLooper是库中已经实现FLooper接口的实现类，内部基于Handler实现，较Timer性能消耗更少，构造方法支持传入Looper对象来指定要循环的线程，默认在主线程循环<br>
 ```java
 public class MainActivity extends AppCompatActivity
 {
