@@ -40,9 +40,9 @@ public interface FLooper
     long getInterval();
 
     /**
-     * 设置循环触发间隔
+     * 设置循环触发间隔，大于0才有效，默认300毫秒
      *
-     * @param interval
+     * @param interval 循环触发间隔(毫秒)
      */
     void setInterval(long interval);
 
