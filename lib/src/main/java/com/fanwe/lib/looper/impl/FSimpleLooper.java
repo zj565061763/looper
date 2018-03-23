@@ -128,9 +128,12 @@ public class FSimpleLooper implements FLooper
     @Override
     public synchronized final void stop()
     {
-        mHandler.removeMessages(MSG_WHAT);
-        mIsStarted = false;
-        onStopLoop();
+        if (mIsStarted)
+        {
+            mIsStarted = false;
+            mHandler.removeMessages(MSG_WHAT);
+            onStopLoop();
+        }
     }
 
     /**
