@@ -97,13 +97,14 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public final synchronized void setInterval(long interval)
+    public final synchronized FSimpleLooper setInterval(long interval)
     {
         if (interval <= 0)
         {
             interval = DEFAULT_INTERVAL;
         }
         mInterval = interval;
+        return this;
     }
 
     @Override

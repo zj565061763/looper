@@ -43,8 +43,9 @@ public interface FLooper
      * 设置循环触发间隔
      *
      * @param interval
+     * @return
      */
-    void setInterval(long interval);
+    FLooper setInterval(long interval);
 
     /**
      * 开始循环
