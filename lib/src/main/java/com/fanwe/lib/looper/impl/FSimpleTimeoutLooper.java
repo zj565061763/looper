@@ -7,6 +7,17 @@ public class FSimpleTimeoutLooper extends FSimpleLooper implements FTimeouter
     private final FTimeouter mTimeouter = new FSimpleTimeouter();
 
     @Override
+    protected boolean onLoop()
+    {
+        if (isTimeout())
+        {
+            runTimeoutRunnable();
+            return false;
+        }
+        return super.onLoop();
+    }
+
+    @Override
     public long getTimeout()
     {
         return mTimeouter.getTimeout();
@@ -19,30 +30,26 @@ public class FSimpleTimeoutLooper extends FSimpleLooper implements FTimeouter
     }
 
     @Override
-    public FTimeouter setTimeoutRunnable(Runnable timeoutRunnable)
+    public void setTimeoutRunnable(Runnable timeoutRunnable)
     {
         mTimeouter.setTimeoutRunnable(timeoutRunnable);
-        return this;
     }
 
     @Override
-    public FTimeouter runTimeoutRunnable()
+    public void runTimeoutRunnable()
     {
         mTimeouter.runTimeoutRunnable();
-        return this;
     }
 
     @Override
-    public FTimeouter setTimeout(long timeout)
+    public synchronized void setTimeout(long timeout)
     {
         mTimeouter.setTimeout(timeout);
-        return this;
     }
 
     @Override
-    public FTimeouter startTimeout()
+    public void startTimeout()
     {
         mTimeouter.startTimeout();
-        return this;
     }
 }

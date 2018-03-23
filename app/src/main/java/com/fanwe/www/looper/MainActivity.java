@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.fanwe.lib.looper.impl.FConditionRunner;
 import com.fanwe.lib.looper.impl.FSimpleLooper;
 
 public class MainActivity extends AppCompatActivity

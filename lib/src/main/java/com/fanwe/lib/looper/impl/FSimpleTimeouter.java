@@ -44,33 +44,29 @@ public class FSimpleTimeouter implements FTimeouter
     }
 
     @Override
-    public FTimeouter setTimeoutRunnable(Runnable timeoutRunnable)
+    public void setTimeoutRunnable(Runnable timeoutRunnable)
     {
         mTimeoutRunnable = timeoutRunnable;
-        return this;
     }
 
     @Override
-    public FTimeouter runTimeoutRunnable()
+    public void runTimeoutRunnable()
     {
         if (mTimeoutRunnable != null)
         {
             mTimeoutRunnable.run();
         }
-        return this;
     }
 
     @Override
-    public FTimeouter setTimeout(long timeout)
+    public void setTimeout(long timeout)
     {
         mTimeout = timeout;
-        return this;
     }
 
     @Override
-    public FTimeouter startTimeout()
+    public void startTimeout()
     {
         mStartTime = System.currentTimeMillis();
-        return this;
     }
 }

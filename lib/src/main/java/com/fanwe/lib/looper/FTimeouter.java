@@ -30,12 +30,12 @@ public interface FTimeouter
     /**
      * 设置超时需要执行的Runnable
      */
-    FTimeouter setTimeoutRunnable(Runnable timeoutRunnable);
+    void setTimeoutRunnable(Runnable timeoutRunnable);
 
     /**
      * 执行超时需要执行的Runnable
      */
-    FTimeouter runTimeoutRunnable();
+    void runTimeoutRunnable();
 
     /**
      * 设置超时时间
@@ -43,10 +43,10 @@ public interface FTimeouter
      * @param timeout 大于0超时才有效
      * @return
      */
-    FTimeouter setTimeout(long timeout);
+    void setTimeout(long timeout);
 
     /**
      * 开始超时计时
      */
-    FTimeouter startTimeout();
+    void startTimeout();
 }
