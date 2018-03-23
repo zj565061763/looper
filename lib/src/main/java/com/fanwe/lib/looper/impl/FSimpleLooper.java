@@ -53,7 +53,7 @@ public class FSimpleLooper implements FLooper
         {
             if (onLoop())
             {
-                sendMsgDelayed(mInterval);
+                loopDelayed(mInterval);
             } else
             {
                 stop();
@@ -78,7 +78,7 @@ public class FSimpleLooper implements FLooper
         }
     }
 
-    private void sendMsgDelayed(long delay)
+    private void loopDelayed(long delay)
     {
         final Message msg = mHandler.obtainMessage(MSG_WHAT);
         mHandler.sendMessageDelayed(msg, delay);
