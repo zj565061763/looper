@@ -117,14 +117,12 @@ public class FSimpleLooper implements FLooper
     @Override
     public synchronized final void startDelayed(long delayMillis, Runnable runnable)
     {
-        mRunnable = runnable;
+        stop();
 
-        if (!mIsStarted)
-        {
-            mIsStarted = true;
-            onStartLoop();
-            loopDelayed(delayMillis);
-        }
+        mRunnable = runnable;
+        mIsStarted = true;
+        onStartLoop();
+        loopDelayed(delayMillis);
     }
 
     @Override
