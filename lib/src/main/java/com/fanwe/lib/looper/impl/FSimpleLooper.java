@@ -131,7 +131,7 @@ public class FSimpleLooper implements FLooper
 
         setInterval(interval);
         sendMsgDelayed(delay);
-        onStart();
+        onStartLoop();
     }
 
     @Override
@@ -139,14 +139,14 @@ public class FSimpleLooper implements FLooper
     {
         mHandler.removeMessages(MSG_WHAT);
         mIsStarted = false;
-        onStop();
+        onStopLoop();
     }
 
-    protected void onStart()
+    protected void onStartLoop()
     {
     }
 
-    protected void onStop()
+    protected void onStopLoop()
     {
     }
 }
