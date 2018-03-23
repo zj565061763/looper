@@ -51,10 +51,10 @@ public interface FLooper
     /**
      * 延迟多少毫秒后开始循环
      *
-     * @param delay
+     * @param delayMillis
      * @param runnable
      */
-    void startDelayed(long delay, Runnable runnable);
+    void startDelayed(long delayMillis, Runnable runnable);
 
     /**
      * 停止循环

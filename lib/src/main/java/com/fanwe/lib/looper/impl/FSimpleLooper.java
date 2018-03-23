@@ -115,7 +115,7 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public synchronized final void startDelayed(long delay, Runnable runnable)
+    public synchronized final void startDelayed(long delayMillis, Runnable runnable)
     {
         mRunnable = runnable;
 
@@ -123,7 +123,7 @@ public class FSimpleLooper implements FLooper
         {
             mIsStarted = true;
             onStartLoop();
-            loopDelayed(delay);
+            loopDelayed(delayMillis);
         }
     }
 
