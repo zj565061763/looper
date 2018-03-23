@@ -17,6 +17,7 @@ public class FSimpleTimeoutLooper extends FSimpleLooper implements FTimeouter
     {
         super(looper);
         setTimeout(10 * 1000); //默认超时时间10秒
+        setInterval(300); //默认循环间隔300毫秒
     }
 
     @Override
