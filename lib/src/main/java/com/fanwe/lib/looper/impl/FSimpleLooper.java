@@ -85,19 +85,19 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public boolean isStarted()
+    public final boolean isStarted()
     {
         return mIsStarted;
     }
 
     @Override
-    public long getInterval()
+    public final long getInterval()
     {
         return mInterval;
     }
 
     @Override
-    public synchronized void setInterval(long interval)
+    public final synchronized void setInterval(long interval)
     {
         if (interval <= 0)
         {
@@ -107,19 +107,19 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public void start(Runnable runnable)
+    public final void start(Runnable runnable)
     {
         start(0, mInterval, runnable);
     }
 
     @Override
-    public void start(long interval, Runnable runnable)
+    public final void start(long interval, Runnable runnable)
     {
         start(0, interval, runnable);
     }
 
     @Override
-    public synchronized void start(long delay, long interval, Runnable runnable)
+    public synchronized final void start(long delay, long interval, Runnable runnable)
     {
         if (mIsStarted)
         {
@@ -134,7 +134,7 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
-    public synchronized void stop()
+    public synchronized final void stop()
     {
         mHandler.removeMessages(MSG_WHAT);
         mIsStarted = false;
