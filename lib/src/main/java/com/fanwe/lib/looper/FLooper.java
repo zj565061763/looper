@@ -49,6 +49,14 @@ public interface FLooper
     void start(Runnable runnable);
 
     /**
+     * 延迟多少毫秒后开始循环
+     *
+     * @param delay
+     * @param runnable
+     */
+    void startDelayed(long delay, Runnable runnable);
+
+    /**
      * 停止循环
      */
     void stop();
