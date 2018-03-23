@@ -13,54 +13,65 @@
 
 该类是库中已经实现FLooper接口的实现类，内部基于Handler实现，较Timer性能消耗更少，构造方法支持传入Looper对象来指定要循环的线程，默认在主线程循环<br>
 ```java
-private void testSimpleLooper()
+public class MainActivity extends AppCompatActivity
 {
-    //延迟500毫秒后，每隔1000毫秒触发一次设置的Runnable对象
-    FLooper looper = new FSimpleLooper();
-    looper.start(500, 1000, new Runnable()
-    {
-        @Override
-        public void run()
-        {
-            Toast.makeText(getApplication(), "toast", 0).show();
-        }
-    });
-    // looper.stop(); //停止循环，在需要停止的地方停止，比如ui销毁
-}
-```
+    public static final String TAG = "MainActivity";
 
-## FConditionRunner
-```java
-private void testConditionRunner()
-{
-    FConditionRunner runner = new FConditionRunner();
-    runner.run(new Runnable() //设置条件成立后要执行的Runnable对象
-    {
-        @Override
-        public void run()
-        {
-            Log.i(TAG, "run");
-        }
-    }).setTimeout(5 * 1000)//设置超时时间，默认10秒
-            .setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
-            {
-                @Override
-                public void run()
-                {
-                    Log.i(TAG, "timeout");
-                }
-            })
-            .startCheck(new FConditionRunner.Condition() //开始检测条件是否成立，默认每300毫秒检测一次
-            {
-                @Override
-                public boolean run()
-                {
-                    //返回true则Runnable立即执行，返回false则继续检测，如果超时会执行超时Runnable
-                    return false;
-                }
-            });
+    private FSimpleLooper mLooper = new FSimpleLooper();
+    private FSimpleTimeoutLooper mTimeoutLooper = new FSimpleTimeoutLooper();
 
-    runner.stopCheck(); // 停止检测
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        testSimpleLooper();
+        testSimpleTimeoutLooper();
+    }
+
+    private void testSimpleLooper()
+    {
+        //延迟500毫秒后，每隔1000毫秒触发一次设置的Runnable对象
+        mLooper.start(500, 1000, new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Log.i(TAG, "FSimpleLooper run");
+            }
+        });
+    }
+
+    private void testSimpleTimeoutLooper()
+    {
+        mTimeoutLooper.setTimeout(5 * 1000); //设置超时时间，默认10秒
+        mTimeoutLooper.setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
+        {
+            @Override
+            public void run()
+            {
+                Log.e(TAG, "timeout");
+            }
+        });
+        mTimeoutLooper.setInterval(1000); //每隔1000毫秒触发一次
+        mTimeoutLooper.start(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Log.e(TAG, "FSimpleTimeoutLooper run");
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        mLooper.stop(); // 停止循环
+        mTimeoutLooper.stop(); // 停止循环
+    }
 }
 ```
 
