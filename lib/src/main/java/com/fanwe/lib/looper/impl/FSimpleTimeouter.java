@@ -24,13 +24,13 @@ public class FSimpleTimeouter implements FTimeouter
     private Runnable mTimeoutRunnable;
 
     @Override
-    public synchronized long getTimeout()
+    public long getTimeout()
     {
         return mTimeout;
     }
 
     @Override
-    public synchronized boolean isTimeout()
+    public boolean isTimeout()
     {
         if (mTimeout > 0 && mStartTime > 0)
         {
@@ -44,14 +44,14 @@ public class FSimpleTimeouter implements FTimeouter
     }
 
     @Override
-    public synchronized FTimeouter setTimeoutRunnable(Runnable timeoutRunnable)
+    public FTimeouter setTimeoutRunnable(Runnable timeoutRunnable)
     {
         mTimeoutRunnable = timeoutRunnable;
         return this;
     }
 
     @Override
-    public synchronized FTimeouter runTimeoutRunnable()
+    public FTimeouter runTimeoutRunnable()
     {
         if (mTimeoutRunnable != null)
         {
@@ -61,14 +61,14 @@ public class FSimpleTimeouter implements FTimeouter
     }
 
     @Override
-    public synchronized FTimeouter setTimeout(long timeout)
+    public FTimeouter setTimeout(long timeout)
     {
         mTimeout = timeout;
         return this;
     }
 
     @Override
-    public synchronized FTimeouter startTimeout()
+    public FTimeouter startTimeout()
     {
         mStartTime = System.currentTimeMillis();
         return this;
