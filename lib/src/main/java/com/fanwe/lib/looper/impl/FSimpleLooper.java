@@ -51,14 +51,30 @@ public class FSimpleLooper implements FLooper
     {
         if (mIsStarted)
         {
-            if (mRunnable != null)
+            if (onLoop())
             {
-                mRunnable.run();
                 sendMsgDelayed(mInterval);
             } else
             {
                 stop();
             }
+        }
+    }
+
+    /**
+     * 循环回调
+     *
+     * @return true-继续循环，false-停止循环
+     */
+    protected boolean onLoop()
+    {
+        if (mRunnable == null)
+        {
+            return false;
+        } else
+        {
+            mRunnable.run();
+            return true;
         }
     }
 
