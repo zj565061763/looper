@@ -15,38 +15,49 @@
  */
 package com.fanwe.lib.looper;
 
-public interface FTimeouter
+/**
+ * 循环触发接口
+ */
+public interface Looper
 {
     /**
-     * 获得设置的超时时间
-     */
-    long getTimeout();
-
-    /**
-     * 是否超时
-     */
-    boolean isTimeout();
-
-    /**
-     * 设置超时需要执行的Runnable
-     */
-    void setTimeoutRunnable(Runnable timeoutRunnable);
-
-    /**
-     * 执行超时需要执行的Runnable
-     */
-    void runTimeoutRunnable();
-
-    /**
-     * 设置超时时间(毫秒)
+     * 是否已经开始循环
      *
-     * @param timeout
      * @return
      */
-    void setTimeout(long timeout);
+    boolean isStarted();
 
     /**
-     * 开始超时计时
+     * 返回循环间隔
+     *
+     * @return
      */
-    void startTimeout();
+    long getInterval();
+
+    /**
+     * 设置循环触发间隔，大于0才有效
+     *
+     * @param interval 循环触发间隔(毫秒)
+     */
+    void setInterval(long interval);
+
+    /**
+     * 开始循环
+     *
+     * @param runnable
+     */
+    void start(Runnable runnable);
+
+    /**
+     * 延迟多少毫秒后开始循环
+     *
+     * @param delayMillis
+     * @param runnable
+     */
+    void startDelayed(long delayMillis, Runnable runnable);
+
+    /**
+     * 停止循环
+     */
+    void stop();
 }

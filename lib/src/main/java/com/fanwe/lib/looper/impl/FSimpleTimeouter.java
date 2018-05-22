@@ -15,9 +15,9 @@
  */
 package com.fanwe.lib.looper.impl;
 
-import com.fanwe.lib.looper.FTimeouter;
+import com.fanwe.lib.looper.Timeouter;
 
-public class FSimpleTimeouter implements FTimeouter
+public class FSimpleTimeouter implements Timeouter
 {
     /**
      * 超时时间，默认10秒
