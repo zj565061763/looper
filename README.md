@@ -16,10 +16,10 @@ FSimpleLooper是库中已经实现FLooper接口的实现类，内部基于Handle
 ```java
 public class MainActivity extends AppCompatActivity
 {
-    public static final String TAG = "MainActivity";
+    public static final String TAG = MainActivity.class.getSimpleName();
 
-    private FSimpleLooper mLooper = new FSimpleLooper();
-    private FSimpleTimeoutLooper mTimeoutLooper = new FSimpleTimeoutLooper();
+    private final FSimpleLooper mLooper = new FSimpleLooper();
+    private final FSimpleTimeoutLooper mTimeoutLooper = new FSimpleTimeoutLooper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity
 
     private void testSimpleLooper()
     {
-        //延迟500毫秒后，每隔1000毫秒触发一次设置的Runnable对象
-        mLooper.start(500, 1000, new Runnable()
+        mLooper.setInterval(1000);//设置每隔1000毫秒触发一次
+        mLooper.start(new Runnable()
         {
             @Override
             public void run()
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
                 Log.e(TAG, "timeout");
             }
         });
-        mTimeoutLooper.setInterval(1000); //每隔1000毫秒触发一次
+        mTimeoutLooper.setInterval(1000); //设置每隔1000毫秒触发一次
         mTimeoutLooper.start(new Runnable()
         {
             @Override
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 }
 ```
 ```java
-public interface FLooper
+public interface Looper
 {
     /**
      * 是否已经开始循环
@@ -118,5 +118,43 @@ public interface FLooper
      * 停止循环
      */
     void stop();
+}
+```
+
+```java
+public interface Timeouter
+{
+    /**
+     * 获得设置的超时时间
+     */
+    long getTimeout();
+
+    /**
+     * 是否超时
+     */
+    boolean isTimeout();
+
+    /**
+     * 设置超时需要执行的Runnable
+     */
+    void setTimeoutRunnable(Runnable timeoutRunnable);
+
+    /**
+     * 执行超时需要执行的Runnable
+     */
+    void runTimeoutRunnable();
+
+    /**
+     * 设置超时时间(毫秒)
+     *
+     * @param timeout
+     * @return
+     */
+    void setTimeout(long timeout);
+
+    /**
+     * 开始超时计时
+     */
+    void startTimeout();
 }
 ```
