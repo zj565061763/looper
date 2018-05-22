@@ -8,7 +8,7 @@
 * ...
 
 ## Gradle
-[![](https://jitpack.io/v/zj565061763/looper.svg)](https://jitpack.io/#zj565061763/looper)
+`implementation 'com.fanwe.android:looper:1.0.15'`
 
 ## 简单使用
 
