@@ -45,19 +45,19 @@ public class FSimpleTimeoutLooper extends FSimpleLooper implements Timeouter
     }
 
     @Override
-    public boolean isTimeout()
+    public synchronized boolean isTimeout()
     {
         return mTimeouter.isTimeout();
     }
 
     @Override
-    public void setTimeoutRunnable(Runnable timeoutRunnable)
+    public synchronized void setTimeoutRunnable(Runnable timeoutRunnable)
     {
         mTimeouter.setTimeoutRunnable(timeoutRunnable);
     }
 
     @Override
-    public void runTimeoutRunnable()
+    public synchronized void runTimeoutRunnable()
     {
         mTimeouter.runTimeoutRunnable();
     }
@@ -69,7 +69,7 @@ public class FSimpleTimeoutLooper extends FSimpleLooper implements Timeouter
     }
 
     @Override
-    public void startTimeout()
+    public synchronized void startTimeout()
     {
         mTimeouter.startTimeout();
     }

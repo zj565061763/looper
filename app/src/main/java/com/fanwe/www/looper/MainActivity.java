@@ -9,10 +9,10 @@ import com.fanwe.lib.looper.impl.FSimpleTimeoutLooper;
 
 public class MainActivity extends AppCompatActivity
 {
-    public static final String TAG = "MainActivity";
+    public static final String TAG = MainActivity.class.getSimpleName();
 
-    private FSimpleLooper mLooper = new FSimpleLooper();
-    private FSimpleTimeoutLooper mTimeoutLooper = new FSimpleTimeoutLooper();
+    private final FSimpleLooper mLooper = new FSimpleLooper();
+    private final FSimpleTimeoutLooper mTimeoutLooper = new FSimpleTimeoutLooper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
