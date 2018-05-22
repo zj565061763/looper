@@ -41,7 +41,6 @@ public interface Timeouter
      * 设置超时时间(毫秒)
      *
      * @param timeout
-     * @return
      */
     void setTimeout(long timeout);
 
