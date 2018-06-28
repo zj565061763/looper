@@ -71,13 +71,10 @@ public class FSimpleLooper implements Looper
     protected boolean onLoop()
     {
         if (mRunnable == null)
-        {
             return false;
-        } else
-        {
-            mRunnable.run();
-            return true;
-        }
+
+        mRunnable.run();
+        return true;
     }
 
     private void loopDelayed(long delay)
@@ -102,9 +99,7 @@ public class FSimpleLooper implements Looper
     public final synchronized void setInterval(long interval)
     {
         if (interval > 0)
-        {
             mInterval = interval;
-        }
     }
 
     @Override

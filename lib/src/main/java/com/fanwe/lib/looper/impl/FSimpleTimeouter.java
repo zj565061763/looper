@@ -56,9 +56,7 @@ public class FSimpleTimeouter implements Timeouter
     public void runTimeoutRunnable()
     {
         if (mTimeoutRunnable != null)
-        {
             mTimeoutRunnable.run();
-        }
     }
 
     @Override
