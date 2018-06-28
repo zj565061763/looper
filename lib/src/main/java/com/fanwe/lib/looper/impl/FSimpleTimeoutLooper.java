@@ -10,7 +10,7 @@ public class FSimpleTimeoutLooper extends FSimpleLooper implements Timeouter
 
     public FSimpleTimeoutLooper()
     {
-        this(Looper.getMainLooper());
+        this(null);
     }
 
     public FSimpleTimeoutLooper(Looper looper)

@@ -36,11 +36,14 @@ public class FSimpleLooper implements Looper
 
     public FSimpleLooper()
     {
-        this(android.os.Looper.getMainLooper());
+        this(null);
     }
 
     public FSimpleLooper(android.os.Looper looper)
     {
+        if (looper == null)
+            looper = android.os.Looper.getMainLooper();
+
         mHandler = new Handler(looper)
         {
             @Override
