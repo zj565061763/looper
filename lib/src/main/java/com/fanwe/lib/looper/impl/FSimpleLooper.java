@@ -60,7 +60,7 @@ public class FSimpleLooper implements Looper
         {
             if (onLoop())
             {
-                loopDelayed(getInterval());
+                sendMessageDelayed(getInterval());
             } else
             {
                 stop();
@@ -82,7 +82,7 @@ public class FSimpleLooper implements Looper
         return true;
     }
 
-    private void loopDelayed(long delay)
+    private void sendMessageDelayed(long delay)
     {
         final Message msg = mHandler.obtainMessage(MSG_WHAT);
         mHandler.sendMessageDelayed(msg, delay);
@@ -133,7 +133,7 @@ public class FSimpleLooper implements Looper
 
         stop();
 
-        loopDelayed(delayMillis);
+        sendMessageDelayed(delayMillis);
         setStarted(true);
         return true;
     }
