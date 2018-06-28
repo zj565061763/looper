@@ -133,8 +133,8 @@ public class FSimpleLooper implements Looper
 
         stop();
 
-        setStarted(true);
         loopDelayed(delayMillis);
+        setStarted(true);
         return true;
     }
 
@@ -143,8 +143,8 @@ public class FSimpleLooper implements Looper
     {
         if (mIsStarted)
         {
-            setStarted(false);
             mHandler.removeMessages(MSG_WHAT);
+            setStarted(false);
         }
     }
 
