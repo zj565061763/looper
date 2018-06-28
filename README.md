@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity
 
     private void testSimpleLooper()
     {
-        mLooper.setInterval(1000);//设置每隔1000毫秒触发一次
-        mLooper.start(new Runnable()
+        // 设置每隔1000毫秒触发一次
+        mLooper.setInterval(1000);
+        // 设置要循环触发的runnable
+        mLooper.setLoopRunnable(new Runnable()
         {
             @Override
             public void run()
@@ -42,12 +44,16 @@ public class MainActivity extends AppCompatActivity
                 Log.i(TAG, "FSimpleLooper run");
             }
         });
+        // 开始循环
+        mLooper.start();
     }
 
     private void testSimpleTimeoutLooper()
     {
-        mTimeoutLooper.setTimeout(5 * 1000); //设置超时时间，默认10秒
-        mTimeoutLooper.setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
+        // 设置超时时间，默认10秒
+        mTimeoutLooper.setTimeout(5 * 1000);
+        // 设置超时需要执行的Runnable
+        mTimeoutLooper.setTimeoutRunnable(new Runnable()
         {
             @Override
             public void run()
@@ -55,8 +61,10 @@ public class MainActivity extends AppCompatActivity
                 Log.e(TAG, "timeout");
             }
         });
-        mTimeoutLooper.setInterval(1000); //设置每隔1000毫秒触发一次
-        mTimeoutLooper.start(new Runnable()
+        // 设置每隔1000毫秒触发一次
+        mTimeoutLooper.setInterval(1000);
+        // 设置要循环触发的runnable
+        mTimeoutLooper.setLoopRunnable(new Runnable()
         {
             @Override
             public void run()
@@ -64,6 +72,8 @@ public class MainActivity extends AppCompatActivity
                 Log.e(TAG, "FSimpleTimeoutLooper run");
             }
         });
+        // 开始循环
+        mTimeoutLooper.start();
     }
 
     @Override
@@ -78,6 +88,13 @@ public class MainActivity extends AppCompatActivity
 ```java
 public interface Looper
 {
+    /**
+     * 设置状态变化回调
+     *
+     * @param callback
+     */
+    void setOnStateChangeCallback(OnStateChangeCallback callback);
+
     /**
      * 是否已经开始循环
      *
@@ -100,24 +117,47 @@ public interface Looper
     void setInterval(long interval);
 
     /**
-     * 开始循环
+     * 设置要循环触发的runnable
      *
      * @param runnable
      */
-    void start(Runnable runnable);
+    void setLoopRunnable(Runnable runnable);
+
+    /**
+     * 开始循环
+     *
+     * @return
+     */
+    boolean start();
 
     /**
      * 延迟多少毫秒后开始循环
      *
      * @param delayMillis
-     * @param runnable
+     * @return
      */
-    void startDelayed(long delayMillis, Runnable runnable);
+    boolean startDelayed(long delayMillis);
 
     /**
      * 停止循环
      */
     void stop();
+
+    @Deprecated
+    void start(Runnable runnable);
+
+    @Deprecated
+    void startDelayed(long delayMillis, Runnable runnable);
+
+    interface OnStateChangeCallback
+    {
+        /**
+         * 循环是否开始状态变化回调
+         *
+         * @param started
+         */
+        void onStateChanged(boolean started);
+    }
 }
 ```
 
@@ -148,7 +188,6 @@ public interface Timeouter
      * 设置超时时间(毫秒)
      *
      * @param timeout
-     * @return
      */
     void setTimeout(long timeout);
 

@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity
 
     private void testSimpleLooper()
     {
-        mLooper.setInterval(1000);//设置每隔1000毫秒触发一次
-        mLooper.start(new Runnable()
+        // 设置每隔1000毫秒触发一次
+        mLooper.setInterval(1000);
+        // 设置要循环触发的runnable
+        mLooper.setLoopRunnable(new Runnable()
         {
             @Override
             public void run()
@@ -35,12 +37,16 @@ public class MainActivity extends AppCompatActivity
                 Log.i(TAG, "FSimpleLooper run");
             }
         });
+        // 开始循环
+        mLooper.start();
     }
 
     private void testSimpleTimeoutLooper()
     {
-        mTimeoutLooper.setTimeout(5 * 1000); //设置超时时间，默认10秒
-        mTimeoutLooper.setTimeoutRunnable(new Runnable() //设置超时需要执行的Runnable
+        // 设置超时时间，默认10秒
+        mTimeoutLooper.setTimeout(5 * 1000);
+        // 设置超时需要执行的Runnable
+        mTimeoutLooper.setTimeoutRunnable(new Runnable()
         {
             @Override
             public void run()
@@ -48,8 +54,10 @@ public class MainActivity extends AppCompatActivity
                 Log.e(TAG, "timeout");
             }
         });
-        mTimeoutLooper.setInterval(1000); //设置每隔1000毫秒触发一次
-        mTimeoutLooper.start(new Runnable()
+        // 设置每隔1000毫秒触发一次
+        mTimeoutLooper.setInterval(1000);
+        // 设置要循环触发的runnable
+        mTimeoutLooper.setLoopRunnable(new Runnable()
         {
             @Override
             public void run()
@@ -57,6 +65,8 @@ public class MainActivity extends AppCompatActivity
                 Log.e(TAG, "FSimpleTimeoutLooper run");
             }
         });
+        // 开始循环
+        mTimeoutLooper.start();
     }
 
     @Override

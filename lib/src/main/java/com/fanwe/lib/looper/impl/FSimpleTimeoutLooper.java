@@ -23,10 +23,11 @@ public class FSimpleTimeoutLooper extends FSimpleLooper implements Timeouter
     }
 
     @Override
-    protected void onStartLoop()
+    protected void onStateChanged(boolean started)
     {
-        super.onStartLoop();
-        startTimeout();
+        super.onStateChanged(started);
+        if (started)
+            startTimeout();
     }
 
     @Override

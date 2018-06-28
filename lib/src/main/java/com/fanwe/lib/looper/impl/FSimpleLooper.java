@@ -25,12 +25,14 @@ public class FSimpleLooper implements Looper
     private static final int MSG_WHAT = 1990;
 
     private final Handler mHandler;
-    private Runnable mRunnable;
+    private Runnable mLoopRunnable;
     /**
      * 循环触发间隔，默认300毫秒
      */
     private long mInterval = 300;
     private boolean mIsStarted = false;
+
+    private OnStateChangeCallback mOnStateChangeCallback;
 
     public FSimpleLooper()
     {
@@ -55,7 +57,7 @@ public class FSimpleLooper implements Looper
         {
             if (onLoop())
             {
-                loopDelayed(mInterval);
+                loopDelayed(getInterval());
             } else
             {
                 stop();
@@ -70,10 +72,10 @@ public class FSimpleLooper implements Looper
      */
     protected boolean onLoop()
     {
-        if (mRunnable == null)
+        if (mLoopRunnable == null)
             return false;
 
-        mRunnable.run();
+        mLoopRunnable.run();
         return true;
     }
 
@@ -84,39 +86,53 @@ public class FSimpleLooper implements Looper
     }
 
     @Override
+    public void setOnStateChangeCallback(OnStateChangeCallback callback)
+    {
+        mOnStateChangeCallback = callback;
+    }
+
+    @Override
     public final boolean isStarted()
     {
         return mIsStarted;
     }
 
     @Override
-    public final long getInterval()
+    public long getInterval()
     {
         return mInterval;
     }
 
     @Override
-    public final synchronized void setInterval(long interval)
+    public synchronized void setInterval(long interval)
     {
         if (interval > 0)
             mInterval = interval;
     }
 
     @Override
-    public final void start(Runnable runnable)
+    public synchronized void setLoopRunnable(Runnable runnable)
     {
-        startDelayed(0, runnable);
+        mLoopRunnable = runnable;
     }
 
     @Override
-    public synchronized final void startDelayed(long delayMillis, Runnable runnable)
+    public final boolean start()
     {
+        return startDelayed(0);
+    }
+
+    @Override
+    public synchronized final boolean startDelayed(long delayMillis)
+    {
+        if (mLoopRunnable == null)
+            return false;
+
         stop();
 
-        mRunnable = runnable;
-        mIsStarted = true;
-        onStartLoop();
+        setStarted(true);
         loopDelayed(delayMillis);
+        return true;
     }
 
     @Override
@@ -124,23 +140,43 @@ public class FSimpleLooper implements Looper
     {
         if (mIsStarted)
         {
-            mIsStarted = false;
+            setStarted(false);
             mHandler.removeMessages(MSG_WHAT);
-            onStopLoop();
         }
     }
 
-    /**
-     * 循环开始回调
-     */
-    protected void onStartLoop()
+    private void setStarted(boolean started)
     {
+        if (mIsStarted != started)
+        {
+            mIsStarted = started;
+            onStateChanged(started);
+            if (mOnStateChangeCallback != null)
+                mOnStateChangeCallback.onStateChanged(started);
+        }
+    }
+
+    @Deprecated
+    @Override
+    public final void start(Runnable runnable)
+    {
+        startDelayed(0, runnable);
+    }
+
+    @Deprecated
+    @Override
+    public synchronized final void startDelayed(long delayMillis, Runnable runnable)
+    {
+        setLoopRunnable(runnable);
+        startDelayed(delayMillis);
     }
 
     /**
-     * 循环结束回调
+     * 循环是否开始状态变化回调
+     *
+     * @param started
      */
-    protected void onStopLoop()
+    protected void onStateChanged(boolean started)
     {
     }
 }
