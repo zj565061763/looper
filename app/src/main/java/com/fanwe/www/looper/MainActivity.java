@@ -73,7 +73,9 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy()
     {
         super.onDestroy();
-        mLooper.stop(); // 停止循环
-        mTimeoutLooper.stop(); // 停止循环
+        // 停止循环
+        mLooper.stop();
+        // 停止循环
+        mTimeoutLooper.stop();
     }
 }
