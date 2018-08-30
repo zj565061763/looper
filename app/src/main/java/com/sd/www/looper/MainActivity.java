@@ -1,11 +1,11 @@
-package com.fanwe.www.looper;
+package com.sd.www.looper;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.fanwe.lib.looper.impl.FSimpleLooper;
-import com.fanwe.lib.looper.impl.FSimpleTimeoutLooper;
+import com.sd.lib.looper.impl.FSimpleLooper;
+import com.sd.lib.looper.impl.FSimpleTimeoutLooper;
 
 public class MainActivity extends AppCompatActivity
 {
