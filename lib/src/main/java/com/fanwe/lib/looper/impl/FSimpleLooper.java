@@ -109,8 +109,10 @@ public class FSimpleLooper implements Looper
     @Override
     public synchronized void setInterval(long interval)
     {
-        if (interval > 0)
-            mInterval = interval;
+        if (interval <= 0)
+            throw new IllegalArgumentException("interval is out of range (interval > 0).");
+
+        mInterval = interval;
     }
 
     @Override
@@ -157,21 +159,6 @@ public class FSimpleLooper implements Looper
             if (mOnStateChangeCallback != null)
                 mOnStateChangeCallback.onStateChanged(started);
         }
-    }
-
-    @Deprecated
-    @Override
-    public final void start(Runnable runnable)
-    {
-        startDelayed(0, runnable);
-    }
-
-    @Deprecated
-    @Override
-    public synchronized final void startDelayed(long delayMillis, Runnable runnable)
-    {
-        setLoopRunnable(runnable);
-        startDelayed(delayMillis);
     }
 
     /**

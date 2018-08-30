@@ -75,12 +75,6 @@ public interface Looper
      */
     void stop();
 
-    @Deprecated
-    void start(Runnable runnable);
-
-    @Deprecated
-    void startDelayed(long delayMillis, Runnable runnable);
-
     interface OnStateChangeCallback
     {
         /**
