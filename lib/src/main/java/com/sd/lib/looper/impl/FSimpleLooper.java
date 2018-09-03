@@ -60,9 +60,6 @@ public class FSimpleLooper implements Looper
      */
     protected boolean onLoop()
     {
-        if (mLoopRunnable == null)
-            return false;
-
         mLoopRunnable.run();
         return true;
     }
@@ -101,28 +98,22 @@ public class FSimpleLooper implements Looper
     }
 
     @Override
-    public synchronized void setLoopRunnable(Runnable runnable)
+    public final void start(Runnable runnable)
     {
-        mLoopRunnable = runnable;
+        startDelayed(0, runnable);
     }
 
     @Override
-    public final boolean start()
+    public synchronized final void startDelayed(long delayMillis, Runnable runnable)
     {
-        return startDelayed(0);
-    }
-
-    @Override
-    public synchronized final boolean startDelayed(long delayMillis)
-    {
-        if (mLoopRunnable == null)
-            return false;
+        if (runnable == null)
+            throw new NullPointerException("runnable is null");
 
         stop();
 
+        mLoopRunnable = runnable;
         sendMessageDelayed(delayMillis);
         setStarted(true);
-        return true;
     }
 
     @Override

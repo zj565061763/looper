@@ -34,26 +34,19 @@ public interface Looper
     void setInterval(long interval);
 
     /**
-     * 设置要循环触发的runnable
-     *
-     * @param runnable
-     */
-    void setLoopRunnable(Runnable runnable);
-
-    /**
      * 开始循环
      *
-     * @return
+     * @param runnable 要循环的对象
      */
-    boolean start();
+    void start(Runnable runnable);
 
     /**
      * 延迟多少毫秒后开始循环
      *
      * @param delayMillis
-     * @return
+     * @param runnable    要循环的对象
      */
-    boolean startDelayed(long delayMillis);
+    void startDelayed(long delayMillis, Runnable runnable);
 
     /**
      * 停止循环
