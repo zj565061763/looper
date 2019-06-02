@@ -2,14 +2,11 @@ package com.sd.lib.looper.impl;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 
 import com.sd.lib.looper.FLooper;
 
 public class FSimpleLooper implements FLooper
 {
-    private static final int MSG_WHAT = 1990;
-
     private final Handler mHandler;
     private Runnable mLoopRunnable;
     /**
@@ -30,15 +27,17 @@ public class FSimpleLooper implements FLooper
         if (looper == null)
             looper = Looper.getMainLooper();
 
-        mHandler = new Handler(looper)
-        {
-            @Override
-            public void handleMessage(Message msg)
-            {
-                loopIfNeed();
-            }
-        };
+        mHandler = new Handler(looper);
     }
+
+    private final Runnable mHandlerRunnable = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            loopIfNeed();
+        }
+    };
 
     private synchronized void loopIfNeed()
     {
@@ -67,8 +66,7 @@ public class FSimpleLooper implements FLooper
 
     private void sendMessageDelayed(long delay)
     {
-        final Message msg = mHandler.obtainMessage(MSG_WHAT);
-        mHandler.sendMessageDelayed(msg, delay);
+        mHandler.postDelayed(mHandlerRunnable, delay);
     }
 
     @Override
@@ -122,7 +120,7 @@ public class FSimpleLooper implements FLooper
     {
         if (mIsStarted)
         {
-            mHandler.removeMessages(MSG_WHAT);
+            mHandler.removeCallbacks(mHandlerRunnable);
             setStarted(false);
         }
     }
