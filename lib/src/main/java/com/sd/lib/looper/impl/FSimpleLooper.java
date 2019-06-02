@@ -99,11 +99,11 @@ public class FSimpleLooper implements FLooper
     @Override
     public final void start(Runnable runnable)
     {
-        startDelayed(0, runnable);
+        startDelayed(runnable, 0);
     }
 
     @Override
-    public synchronized final void startDelayed(long delayMillis, Runnable runnable)
+    public synchronized final void startDelayed(Runnable runnable, long delayMillis)
     {
         if (runnable == null)
             throw new NullPointerException("runnable is null");

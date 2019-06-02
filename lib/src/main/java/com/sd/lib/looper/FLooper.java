@@ -43,10 +43,10 @@ public interface FLooper
     /**
      * 延迟多少毫秒后开始循环
      *
-     * @param delayMillis
      * @param runnable    要循环的对象
+     * @param delayMillis 延迟多少毫秒
      */
-    void startDelayed(long delayMillis, Runnable runnable);
+    void startDelayed(Runnable runnable, long delayMillis);
 
     /**
      * 停止循环
