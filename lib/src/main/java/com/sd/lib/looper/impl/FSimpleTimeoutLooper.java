@@ -2,11 +2,11 @@ package com.sd.lib.looper.impl;
 
 import android.os.Looper;
 
-import com.sd.lib.looper.Timeouter;
+import com.sd.lib.looper.FTimeouter;
 
-public class FSimpleTimeoutLooper extends FSimpleLooper implements Timeouter
+public class FSimpleTimeoutLooper extends FSimpleLooper implements FTimeouter
 {
-    private final Timeouter mTimeouter = new FSimpleTimeouter();
+    private final FTimeouter mTimeouter = new FSimpleTimeouter();
 
     public FSimpleTimeoutLooper()
     {

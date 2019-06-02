@@ -1,6 +1,6 @@
 package com.sd.lib.looper;
 
-public interface Timeouter
+public interface FTimeouter
 {
     /**
      * 获得设置的超时时间

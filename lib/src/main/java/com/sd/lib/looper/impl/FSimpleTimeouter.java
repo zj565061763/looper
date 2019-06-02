@@ -1,8 +1,8 @@
 package com.sd.lib.looper.impl;
 
-import com.sd.lib.looper.Timeouter;
+import com.sd.lib.looper.FTimeouter;
 
-public class FSimpleTimeouter implements Timeouter
+public class FSimpleTimeouter implements FTimeouter
 {
     /**
      * 超时时间，默认10秒

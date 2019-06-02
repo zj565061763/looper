@@ -1,11 +1,12 @@
 package com.sd.lib.looper.impl;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
-import com.sd.lib.looper.Looper;
+import com.sd.lib.looper.FLooper;
 
-public class FSimpleLooper implements Looper
+public class FSimpleLooper implements FLooper
 {
     private static final int MSG_WHAT = 1990;
 
@@ -24,10 +25,10 @@ public class FSimpleLooper implements Looper
         this(null);
     }
 
-    public FSimpleLooper(android.os.Looper looper)
+    public FSimpleLooper(Looper looper)
     {
         if (looper == null)
-            looper = android.os.Looper.getMainLooper();
+            looper = Looper.getMainLooper();
 
         mHandler = new Handler(looper)
         {

@@ -3,7 +3,7 @@ package com.sd.lib.looper;
 /**
  * 循环触发接口
  */
-public interface Looper
+public interface FLooper
 {
     /**
      * 设置状态变化回调
