@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                Log.e(TAG, "timeout");
+                Log.e(TAG, "timeout runnable");
             }
         });
         // 设置每隔1000毫秒触发一次
