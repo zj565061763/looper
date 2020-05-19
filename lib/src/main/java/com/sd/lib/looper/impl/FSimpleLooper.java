@@ -15,6 +15,8 @@ public class FSimpleLooper implements FLooper
     private long mInterval = 300;
     private boolean mIsStarted = false;
 
+    private long mNextLoopTime;
+
     private OnStateChangeCallback mOnStateChangeCallback;
 
     public FSimpleLooper()
@@ -66,7 +68,11 @@ public class FSimpleLooper implements FLooper
 
     private void sendMessageDelayed(long delay)
     {
+        if (delay < 0)
+            delay = 0;
+
         mHandler.postDelayed(mHandlerRunnable, delay);
+        mNextLoopTime = System.currentTimeMillis() + delay;
     }
 
     @Override
@@ -97,6 +103,12 @@ public class FSimpleLooper implements FLooper
     }
 
     @Override
+    public long getNextLoopTime()
+    {
+        return mNextLoopTime;
+    }
+
+    @Override
     public final void start(Runnable runnable)
     {
         startDelayed(runnable, 0);
@@ -121,6 +133,7 @@ public class FSimpleLooper implements FLooper
         if (mIsStarted)
         {
             mHandler.removeCallbacks(mHandlerRunnable);
+            mNextLoopTime = 0;
             setStarted(false);
         }
     }

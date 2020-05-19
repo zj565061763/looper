@@ -34,6 +34,13 @@ public interface FLooper
     void setInterval(long interval);
 
     /**
+     * 返回下一次循环触发的时间
+     *
+     * @return
+     */
+    long getNextLoopTime();
+
+    /**
      * 开始循环
      *
      * @param runnable 要循环的对象
